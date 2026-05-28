@@ -436,7 +436,7 @@ a {
 }
 
 .homecontainer .aboutintro.hp.herohp.lowerdown.testimonials {
-  align-items: flex-start !important;
+  align-items: center !important;
   justify-content: flex-start !important;
   box-sizing: border-box;
   scroll-margin-top: clamp(2rem, 5vw, 4rem);
@@ -445,15 +445,16 @@ a {
   margin-right: auto !important;
   margin-left: auto !important;
   padding: 0 var(--haggard-page-x) clamp(1.6rem, 2.4vw, 2.3rem) !important;
-  text-align: left;
+  text-align: center;
 }
 
 .homecontainer .aboutintro.hp.herohp.lowerdown.testimonials .heading-3.topheader.herohero {
   max-width: 8em;
-  margin-left: 0 !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
   font-size: clamp(4rem, 7.2vw, 7.8rem) !important;
   line-height: 0.92 !important;
-  text-align: left !important;
+  text-align: center !important;
   white-space: normal;
 }
 
