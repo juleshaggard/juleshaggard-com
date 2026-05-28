@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initHeroIntro } from './hero-intro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,90 +120,95 @@ const initMotion = () => {
       },
     );
 
-  const firstReadSelectors = [
-    '.nav',
-    '.copysection.projectcopy .subline.homesub',
-    '.copysection.projectcopy .mainline.smallhomesection',
-    '.copysection.projectcopy .splitpara',
-    '.aboutintro.hp.herohp > *',
-    '.homecontainer > *:first-child',
-    '.heading-3.topheader',
-    '.heading-4',
-    '.projecttitle.headertitledesc.lefty.brand-leader.morework.pricing:not(.lowerdown)',
-  ];
+    const heroIntro = initHeroIntro();
+    cleanupListeners.push(heroIntro.cleanup);
 
-  const firstReadElements = gsap.utils.toArray<HTMLElement>(firstReadSelectors.join(', '));
+    const firstReadSelectors = [
+      '.nav',
+      '.copysection.projectcopy .subline.homesub',
+      '.copysection.projectcopy .mainline.smallhomesection',
+      '.copysection.projectcopy .splitpara',
+      '.aboutintro.hp.herohp > *',
+      '.homecontainer > *:first-child',
+      '.heading-3.topheader',
+      '.heading-4',
+      '.projecttitle.headertitledesc.lefty.brand-leader.morework.pricing:not(.lowerdown)',
+    ];
 
-  if (firstReadElements.length) {
-    gsap.set(firstReadElements, { autoAlpha: 0, y: 14 });
-    gsap.to(firstReadElements, {
-      autoAlpha: 1,
-      y: 0,
-      clearProps: 'opacity,visibility,transform',
-      delay: 0.04,
-      duration: 0.72,
-      ease: 'power3.out',
-      stagger: 0.055,
-    });
-  }
+    const firstReadElements = gsap.utils
+      .toArray<HTMLElement>(firstReadSelectors.join(', '))
+      .filter((element) => !heroIntro.animatedElements.has(element));
 
-  const revealElements = gsap.utils
-    .toArray<HTMLElement>(
-      [
-        '.projectblock',
-        '.projectblocklink',
-        '.smallproject',
-        '.writingblocks',
-        '.projectimg',
-        '.projectimg-copy',
-        '.projectimg-copy-copy',
-        '.posttext > *',
-        '.paragraph-4',
-        '.paragraph-5',
-        '.div-block-31',
-      ].join(', '),
-    )
-    .filter((element) => !firstReadElements.includes(element) && !isTestimonialCard(element));
+    if (firstReadElements.length) {
+      gsap.set(firstReadElements, { autoAlpha: 0, y: 14 });
+      gsap.to(firstReadElements, {
+        autoAlpha: 1,
+        y: 0,
+        clearProps: 'opacity,visibility,transform',
+        delay: 0.04,
+        duration: 0.72,
+        ease: 'power3.out',
+        stagger: 0.055,
+      });
+    }
 
-  if (revealElements.length) {
-    gsap.set(revealElements, { autoAlpha: 0, y: 22 });
-    ScrollTrigger.batch(revealElements, {
-      once: true,
-      start: 'top 88%',
-      onEnter: (batch) => {
-        gsap.to(batch, {
-          autoAlpha: 1,
-          y: 0,
-          clearProps: 'opacity,visibility,transform',
-          duration: 0.68,
-          ease: 'power3.out',
-          stagger: 0.045,
-        });
-      },
-    });
-  }
+    const revealElements = gsap.utils
+      .toArray<HTMLElement>(
+        [
+          '.projectblock',
+          '.projectblocklink',
+          '.smallproject',
+          '.writingblocks',
+          '.projectimg',
+          '.projectimg-copy',
+          '.projectimg-copy-copy',
+          '.posttext > *',
+          '.paragraph-4',
+          '.paragraph-5',
+          '.div-block-31',
+        ].join(', '),
+      )
+      .filter((element) => !firstReadElements.includes(element) && !isTestimonialCard(element));
 
-  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const hoverCards = gsap.utils.toArray<HTMLElement>('.projectblocklink, .smallproject, .writingblocks');
-    hoverCards.forEach((card) => {
-      addHoverTween(
-        card,
-        { y: -5, duration: 0.32, ease: 'power3.out', overwrite: 'auto' },
-        { y: 0, duration: 0.42, ease: 'power3.out', overwrite: 'auto' },
-      );
-    });
+    if (revealElements.length) {
+      gsap.set(revealElements, { autoAlpha: 0, y: 22 });
+      ScrollTrigger.batch(revealElements, {
+        once: true,
+        start: 'top 88%',
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            clearProps: 'opacity,visibility,transform',
+            duration: 0.68,
+            ease: 'power3.out',
+            stagger: 0.045,
+          });
+        },
+      });
+    }
 
-    const hoverLinks = gsap.utils.toArray<HTMLElement>('.navlink, .ctalink');
-    hoverLinks.forEach((link) => {
-      addHoverTween(
-        link,
-        { y: -1, duration: 0.22, ease: 'power2.out', overwrite: 'auto' },
-        { y: 0, duration: 0.28, ease: 'power2.out', overwrite: 'auto' },
-      );
-    });
-  }
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      const hoverCards = gsap.utils.toArray<HTMLElement>('.projectblocklink, .smallproject, .writingblocks');
+      hoverCards.forEach((card) => {
+        addHoverTween(
+          card,
+          { y: -5, duration: 0.32, ease: 'power3.out', overwrite: 'auto' },
+          { y: 0, duration: 0.42, ease: 'power3.out', overwrite: 'auto' },
+        );
+      });
 
-  initTestimonials();
+      const hoverLinks = gsap.utils.toArray<HTMLElement>('.navlink, .ctalink');
+      hoverLinks.forEach((link) => {
+        addHoverTween(
+          link,
+          { y: -1, duration: 0.22, ease: 'power2.out', overwrite: 'auto' },
+          { y: 0, duration: 0.28, ease: 'power2.out', overwrite: 'auto' },
+        );
+      });
+    }
+
+    initTestimonials();
     requestAnimationFrame(() => ScrollTrigger.refresh());
   });
 };

@@ -84,6 +84,9 @@ const schema = {
     <meta name="twitter:image:alt" content={pageTitle} />
     <link rel="icon" href={withBasePath('/assets/site/favicon.webp')} type="image/png" />
     <link rel="apple-touch-icon" href={withBasePath('/assets/site/apple-touch-icon.webp')} />
+    <script is:inline>
+      document.documentElement.classList.add('motion-ready');
+    </script>
     <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
     <ClientRouter fallback="animate" />
   </head>

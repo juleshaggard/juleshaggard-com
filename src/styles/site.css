@@ -245,6 +245,56 @@ a {
   text-align: center;
 }
 
+.homecontainer > .aboutintro.hp.herohp.hero-liquid-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.homecontainer > .aboutintro.hp.herohp.hero-liquid-stage > *:not(.hero-liquid-canvas) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-liquid-canvas {
+  position: absolute;
+  z-index: 0;
+  top: clamp(4.5rem, 6.8vw, 6.2rem);
+  left: 50%;
+  width: min(74rem, calc(100vw - (var(--haggard-page-x) * 2)));
+  height: clamp(15rem, 31vw, 25rem);
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: multiply;
+  transform: translateX(-50%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .homecontainer > .aboutintro.hp.herohp:first-child:not(.hero-ready) .heading-3.topheader.herohero {
+    opacity: 0;
+  }
+}
+
+.headline-visual,
+.headline-word,
+.headline-char {
+  display: inline-block;
+}
+
+.headline-visual {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.headline-word {
+  white-space: nowrap;
+}
+
+.headline-char {
+  transform-origin: 50% 76%;
+  will-change: transform, opacity, filter;
+}
+
 .heading-3.topheader.herohero {
   width: auto;
   max-width: 9.4em;
