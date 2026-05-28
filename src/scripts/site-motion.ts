@@ -28,6 +28,71 @@ const addHoverTween = (element: HTMLElement, enterVars: gsap.TweenVars, leaveVar
   });
 };
 
+const testimonialGridSelector = '.aboutintro.hp.herohp.lowerdown.testimonials + .grid';
+const isTestimonialCard = (element: HTMLElement) => element.matches(`${testimonialGridSelector} .paragraph-5`);
+
+const initTestimonials = () => {
+  const grid = document.querySelector<HTMLElement>(testimonialGridSelector);
+  if (!grid) {
+    return;
+  }
+
+  const cards = gsap.utils.toArray<HTMLElement>('.paragraph-5', grid);
+  if (!cards.length) {
+    return;
+  }
+
+  grid.setAttribute('role', 'list');
+  grid.setAttribute('aria-label', 'Client testimonials');
+  gsap.set(cards, { transformOrigin: 'left center' });
+
+  cards.forEach((card) => {
+    card.setAttribute('role', 'listitem');
+
+    const onEnter = () => {
+      gsap.to(card, {
+        y: -5,
+        duration: 0.34,
+        ease: 'power3.out',
+        overwrite: 'auto',
+      });
+    };
+    const onLeave = () => {
+      gsap.to(card, {
+        y: 0,
+        duration: 0.42,
+        ease: 'power3.out',
+        overwrite: 'auto',
+      });
+    };
+
+    card.addEventListener('mouseenter', onEnter);
+    card.addEventListener('mouseleave', onLeave);
+
+    cleanupListeners.push(() => {
+      card.removeEventListener('mouseenter', onEnter);
+      card.removeEventListener('mouseleave', onLeave);
+    });
+  });
+
+  gsap.set(cards, { autoAlpha: 0, y: 18 });
+
+  ScrollTrigger.batch(cards, {
+    once: true,
+    start: 'top 84%',
+    onEnter: (batch) => {
+      gsap.to(batch, {
+        autoAlpha: 1,
+        y: 0,
+        clearProps: 'opacity,visibility,transform',
+        duration: 0.62,
+        ease: 'power3.out',
+        stagger: 0.06,
+      });
+    },
+  });
+};
+
 const initMotion = () => {
   const pageKey = `${window.location.pathname}${window.location.search}`;
   if (currentPageKey === pageKey && motionContext) {
@@ -96,7 +161,7 @@ const initMotion = () => {
         '.div-block-31',
       ].join(', '),
     )
-    .filter((element) => !firstReadElements.includes(element));
+    .filter((element) => !firstReadElements.includes(element) && !isTestimonialCard(element));
 
   if (revealElements.length) {
     gsap.set(revealElements, { autoAlpha: 0, y: 22 });
@@ -136,6 +201,7 @@ const initMotion = () => {
     });
   }
 
+  initTestimonials();
     requestAnimationFrame(() => ScrollTrigger.refresh());
   });
 };
