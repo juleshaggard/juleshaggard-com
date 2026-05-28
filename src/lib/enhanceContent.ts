@@ -19,6 +19,15 @@ const decorativeClasses = [
   'whale',
 ];
 
+const associateFaces = Array.from({ length: 9 }, (_, index) => {
+  const number = String(index + 1).padStart(2, '0');
+
+  return {
+    index: index + 1,
+    src: `/assets/associates/associate-${number}.jpg`,
+  };
+});
+
 function cleanText(value: string) {
   return value.replace(/\s+/g, ' ').replace(/\u200d/g, '').trim();
 }
@@ -213,6 +222,34 @@ function stripEmptyNoise($: CheerioAPI) {
   });
 }
 
+function replaceAssociateCollage($: CheerioAPI) {
+  $('#aboutmesection .image-18').each((_, element) => {
+    const cloud = $('<div></div>')
+      .addClass('associate-portrait-cloud')
+      .attr('aria-label', 'Haggard & Associates collaborator portraits')
+      .attr('role', 'img');
+
+    associateFaces.forEach((face) => {
+      const item = $('<span></span>')
+        .addClass(`associate-face associate-face--${face.index}`)
+        .attr('data-associate-index', String(face.index));
+
+      item.append(
+        $('<img>')
+          .attr('src', face.src)
+          .attr('alt', '')
+          .attr('aria-hidden', 'true')
+          .attr('loading', 'lazy')
+          .attr('decoding', 'async'),
+      );
+
+      cloud.append(item);
+    });
+
+    $(element).replaceWith(cloud);
+  });
+}
+
 function projectSlugFromPath(path: string) {
   const match = path.match(/^\/projects\/([^/]+)\/?$/);
   return match?.[1] ?? '';
@@ -262,6 +299,7 @@ export function enhanceContentHtml(html: string, options: EnhanceContentOptions)
   enhanceVideos($);
   enhanceLinks($);
   stripEmptyNoise($);
+  replaceAssociateCollage($);
   injectProjectDeliverables($, options);
   rewriteRootRelativeUrls($);
 

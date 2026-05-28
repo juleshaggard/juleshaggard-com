@@ -891,9 +891,131 @@ section.footer .splitpara.jhppara.footerrr {
   margin-left: auto !important;
 }
 
-#aboutmesection .image-18 {
-  left: 50% !important;
+#aboutmesection .flex-block-4 {
+  position: relative;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: start !important;
+  justify-items: center !important;
+  width: min(100%, 44rem) !important;
+  min-height: clamp(34rem, 55vw, 44rem);
+  margin: clamp(1rem, 3vw, 2rem) auto 0 !important;
+  padding-top: 0 !important;
+}
+
+#aboutmesection .associate-portrait-cloud {
+  --cloud-size: clamp(24rem, 42vw, 38rem);
+  --face-size: clamp(2.15rem, 4vw, 4.1rem);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 50%;
+  width: var(--cloud-size);
+  height: calc(var(--cloud-size) * 0.84);
+  pointer-events: none;
   transform: translateX(-50%);
+}
+
+#aboutmesection .associate-face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: var(--face-size);
+  height: var(--face-size);
+  overflow: hidden;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 0.45rem 1.2rem rgba(17, 16, 15, 0.08);
+  transform: translate(-50%, -50%) translate(var(--x), var(--y));
+  transform-origin: 50% 50%;
+  will-change: opacity, transform;
+}
+
+#aboutmesection .associate-face img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+#aboutmesection .associate-face--1 {
+  --x: 0rem;
+  --y: calc(var(--cloud-size) * -0.39);
+  --face-size: clamp(3rem, 4.8vw, 4.8rem);
+}
+
+#aboutmesection .associate-face--2 {
+  --x: calc(var(--cloud-size) * -0.26);
+  --y: calc(var(--cloud-size) * -0.28);
+  --face-size: clamp(2.15rem, 3.25vw, 3.35rem);
+}
+
+#aboutmesection .associate-face--3 {
+  --x: calc(var(--cloud-size) * 0.29);
+  --y: calc(var(--cloud-size) * -0.28);
+  --face-size: clamp(2.15rem, 3.45vw, 3.45rem);
+}
+
+#aboutmesection .associate-face--4 {
+  --x: calc(var(--cloud-size) * -0.43);
+  --y: calc(var(--cloud-size) * -0.15);
+  --face-size: clamp(3rem, 4.6vw, 4.5rem);
+}
+
+#aboutmesection .associate-face--5 {
+  --x: calc(var(--cloud-size) * 0.44);
+  --y: calc(var(--cloud-size) * -0.11);
+  --face-size: clamp(1.95rem, 3vw, 3rem);
+}
+
+#aboutmesection .associate-face--6 {
+  --x: calc(var(--cloud-size) * 0.47);
+  --y: calc(var(--cloud-size) * 0.07);
+  --face-size: clamp(2.35rem, 3.6vw, 3.65rem);
+}
+
+#aboutmesection .associate-face--7 {
+  --x: calc(var(--cloud-size) * 0.39);
+  --y: calc(var(--cloud-size) * 0.27);
+  --face-size: clamp(3rem, 4.8vw, 4.8rem);
+}
+
+#aboutmesection .associate-face--8 {
+  --x: calc(var(--cloud-size) * -0.42);
+  --y: calc(var(--cloud-size) * 0.22);
+  --face-size: clamp(2.25rem, 3.5vw, 3.45rem);
+}
+
+#aboutmesection .associate-face--9 {
+  --x: calc(var(--cloud-size) * -0.48);
+  --y: calc(var(--cloud-size) * 0.04);
+  --face-size: clamp(1.9rem, 2.9vw, 2.9rem);
+}
+
+#aboutmesection .image-8 {
+  position: relative !important;
+  z-index: 2;
+  display: block !important;
+  justify-self: center !important;
+  top: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: clamp(16rem, 25vw, 22rem) !important;
+  max-width: 70vw;
+  margin: clamp(5.3rem, 8vw, 7rem) auto 0 !important;
+  padding: 0 !important;
+}
+
+#aboutmesection .flex-block-6 {
+  position: relative;
+  z-index: 2;
+  justify-self: center !important;
+  align-items: center !important;
+  margin-top: 1.1rem !important;
+  text-align: center;
 }
 
 .projecttitle.headertitledesc.lefty.brand-leader.hp,
@@ -1308,6 +1430,20 @@ section.footer .splitpara.jhppara.footerrr {
     margin-top: clamp(2.5rem, 10vw, 4rem) !important;
   }
 
+  #aboutmesection .flex-block-4 {
+    width: min(100%, 34rem) !important;
+    min-height: clamp(30rem, 92vw, 38rem);
+  }
+
+  #aboutmesection .associate-portrait-cloud {
+    --cloud-size: clamp(22rem, 82vw, 31rem);
+  }
+
+  #aboutmesection .image-8 {
+    width: clamp(14.75rem, 46vw, 18rem) !important;
+    margin-top: clamp(4.5rem, 10vw, 5.7rem) !important;
+  }
+
   .flex-block-6 {
     margin-top: 1.25rem !important;
   }
@@ -1455,8 +1591,21 @@ section.footer .splitpara.jhppara.footerrr {
     padding-bottom: 0 !important;
   }
 
-  .image-18 {
-    width: min(78vw, 20rem) !important;
+  #aboutmesection .flex-block-4 {
+    min-height: clamp(28rem, 120vw, 32rem);
+  }
+
+  #aboutmesection .associate-portrait-cloud {
+    --cloud-size: clamp(18.75rem, 92vw, 22.5rem);
+  }
+
+  #aboutmesection .image-8 {
+    width: clamp(12.75rem, 58vw, 15rem) !important;
+    margin-top: clamp(4.1rem, 14vw, 4.8rem) !important;
+  }
+
+  #aboutmesection .flex-block-6 {
+    margin-top: 0.9rem !important;
   }
 }
 
