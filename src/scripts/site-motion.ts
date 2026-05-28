@@ -128,6 +128,7 @@ const initMotion = () => {
     '.homecontainer > *:first-child',
     '.heading-3.topheader',
     '.heading-4',
+    '.projecttitle.headertitledesc.lefty.brand-leader.morework.pricing:not(.lowerdown)',
   ];
 
   const firstReadElements = gsap.utils.toArray<HTMLElement>(firstReadSelectors.join(', '));

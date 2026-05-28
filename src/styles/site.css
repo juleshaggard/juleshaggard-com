@@ -294,6 +294,11 @@ a {
   text-align: center !important;
 }
 
+.homecontainer > .aboutintro.pricing-coin {
+  padding-top: clamp(6.75rem, 11vw, 8.5rem);
+  padding-bottom: clamp(0.4rem, 1vw, 0.9rem);
+}
+
 .homecontainer .aboutintro.hp.herohp.lowerdown.testimonials {
   align-items: flex-start !important;
   box-sizing: border-box;
