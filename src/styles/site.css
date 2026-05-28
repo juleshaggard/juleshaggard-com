@@ -586,6 +586,83 @@ a {
   line-height: 1.62 !important;
 }
 
+.deliverables-recap {
+  box-sizing: border-box;
+  width: min(100%, 48rem);
+  margin: clamp(1.35rem, 2.4vw, 2.4rem) auto clamp(4.5rem, 7vw, 7rem);
+  padding: clamp(1rem, 1.8vw, 1.6rem) 0 clamp(2rem, 3vw, 3rem);
+}
+
+.deliverables-recap__body {
+  display: grid;
+  grid-template-columns: minmax(8rem, 0.38fr) minmax(0, 1fr);
+  gap: 0.9rem clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+}
+
+.deliverables-recap__label {
+  grid-row: span 3;
+  margin: 0;
+  color: var(--haggard-muted);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 0.95rem !important;
+  font-weight: 500;
+  line-height: 1.25 !important;
+}
+
+.deliverables-recap__title {
+  margin: 0;
+  color: var(--haggard-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2.6rem, 4vw, 4rem) !important;
+  font-weight: 400;
+  line-height: 0.98 !important;
+  text-wrap: balance;
+}
+
+.deliverables-recap__summary {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--haggard-muted);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 1.05rem !important;
+  line-height: 1.55 !important;
+  text-wrap: pretty;
+}
+
+.deliverables-recap__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1.4rem;
+  margin: 0.25rem 0 0;
+  padding: 0;
+  color: var(--haggard-ink);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 0.98rem !important;
+  line-height: 1.35 !important;
+  list-style: none;
+}
+
+.deliverables-recap__list li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.deliverables-recap__list li::before {
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 0.32rem;
+  height: 0.32rem;
+  background: currentColor;
+  border-radius: 50%;
+  content: "";
+}
+
+.rightcol.workcol > .projectblock:has(+ .deliverables-recap) {
+  margin-bottom: clamp(1.25rem, 2vw, 2.25rem) !important;
+}
+
 section.footer {
   display: flex;
   justify-content: center;
@@ -1034,6 +1111,39 @@ section.footer .splitpara.jhppara.footerrr {
 
   .projectblock {
     margin-bottom: clamp(4rem, 14vw, 6rem) !important;
+  }
+
+  .deliverables-recap {
+    width: 100%;
+    margin-top: clamp(1.6rem, 6vw, 2.4rem);
+    margin-bottom: clamp(3.5rem, 12vw, 5rem);
+    padding-top: 0;
+    padding-bottom: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .deliverables-recap__body {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .deliverables-recap__label {
+    grid-row: auto;
+  }
+
+  .deliverables-recap__summary {
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .deliverables-recap__list {
+    grid-template-columns: 1fr;
+    width: min(100%, 22rem);
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
   }
 
   .projectblocklink,

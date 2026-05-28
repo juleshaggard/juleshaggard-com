@@ -1,6 +1,7 @@
 import * as cheerio from 'cheerio';
 import type { CheerioAPI } from 'cheerio';
 import type { Element } from 'domhandler';
+import { projectDeliverables } from '../data/projectDeliverables';
 import { withBasePath } from './paths';
 import { noindexPaths, siteName } from './seo';
 
@@ -212,6 +213,47 @@ function stripEmptyNoise($: CheerioAPI) {
   });
 }
 
+function projectSlugFromPath(path: string) {
+  const match = path.match(/^\/projects\/([^/]+)\/?$/);
+  return match?.[1] ?? '';
+}
+
+function injectProjectDeliverables($: CheerioAPI, options: EnhanceContentOptions) {
+  const slug = projectSlugFromPath(options.currentPath);
+  const recap = projectDeliverables[slug];
+
+  if (!recap) return;
+  if ($('.deliverables-recap').length > 0) return;
+
+  const sectionId = `deliverables-${slug}`;
+  const section = $('<section></section>')
+    .addClass('deliverables-recap')
+    .attr('aria-labelledby', sectionId);
+  const body = $('<div></div>').addClass('deliverables-recap__body');
+
+  body.append($('<p></p>').addClass('deliverables-recap__label').text('Deliverables'));
+  body.append($('<h2></h2>').addClass('deliverables-recap__title').attr('id', sectionId).text('What Haggard delivered'));
+  body.append($('<p></p>').addClass('deliverables-recap__summary').text(recap.summary));
+
+  const list = $('<ul></ul>').addClass('deliverables-recap__list');
+  recap.items.forEach((item) => {
+    list.append($('<li></li>').text(item));
+  });
+  body.append(list);
+  section.append(body);
+
+  const moreWorkHeading = $('.rightcol.workcol > .mainline.myname.morework').first();
+  if (moreWorkHeading.length > 0) {
+    moreWorkHeading.before(section);
+    return;
+  }
+
+  const rightColumn = $('.rightcol.workcol').first();
+  if (rightColumn.length > 0) {
+    rightColumn.append(section);
+  }
+}
+
 export function enhanceContentHtml(html: string, options: EnhanceContentOptions) {
   const $ = cheerio.load(html, {}, false);
 
@@ -220,6 +262,7 @@ export function enhanceContentHtml(html: string, options: EnhanceContentOptions)
   enhanceVideos($);
   enhanceLinks($);
   stripEmptyNoise($);
+  injectProjectDeliverables($, options);
   rewriteRootRelativeUrls($);
 
   if (noindexPaths.has(options.currentPath)) {
