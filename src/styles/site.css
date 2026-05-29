@@ -530,6 +530,7 @@ a {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
+  gap: clamp(0.85rem, 1.15vw, 1.15rem) !important;
   width: min(100%, 46.5rem) !important;
   margin-right: auto !important;
   margin-left: auto !important;
