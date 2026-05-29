@@ -26,7 +26,7 @@ const {
   description = 'The best design delivers big answers, little by little. By starting with function, I help lead design teams and projects to natural solutions.',
   bodyClass = '',
   currentPath,
-  ogImage = '/assets/site/og-image.webp',
+  ogImage = '/assets/social-image.png',
 } = Astro.props;
 
 const canonicalPath = currentPath === '/' ? '' : currentPath;
@@ -34,6 +34,7 @@ const canonicalUrl = absoluteSiteUrl(canonicalPath, Astro.site ?? new URL(produc
 const pageTitle = title.includes('Haggard') || title.length > 48 ? title : `${title} | ${siteName}`;
 const absoluteOgImage = absoluteSiteUrl(ogImage, Astro.site ?? new URL(productionOrigin));
 const robots = noindexPaths.has(currentPath) ? 'noindex, nofollow' : 'index, follow';
+const showCopyrightFooter = currentPath !== '/';
 const normalizedDescription = description.replace(/\s+/g, ' ').trim();
 const metaDescription =
   normalizedDescription.length <= 160
@@ -82,7 +83,8 @@ const schema = {
     <meta name="twitter:description" content={metaDescription} />
     <meta name="twitter:image" content={absoluteOgImage} />
     <meta name="twitter:image:alt" content={pageTitle} />
-    <link rel="icon" href={withBasePath('/assets/site/favicon.webp')} type="image/png" />
+    <link rel="icon" href={withBasePath('/assets/favicon.png')} type="image/png" />
+    <link rel="shortcut icon" href={withBasePath('/favicon.ico')} />
     <link rel="apple-touch-icon" href={withBasePath('/assets/site/apple-touch-icon.webp')} />
     <script is:inline>
       document.documentElement.classList.add('motion-ready');
@@ -96,6 +98,13 @@ const schema = {
     <main id="main-content" tabindex="-1">
       <slot />
     </main>
+    {
+      showCopyrightFooter && (
+        <footer class="site-copyright-footer" aria-label="Site copyright">
+          <p>© 2026 Haggard &amp; Associates · San Francisco, California</p>
+        </footer>
+      )
+    }
     <script>
       import '../scripts/site-motion';
     </script>

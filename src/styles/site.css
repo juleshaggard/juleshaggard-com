@@ -968,7 +968,12 @@ a {
 
 .bigthinks {
   max-width: 100vw;
+  padding-bottom: clamp(0.7rem, 1vw, 1rem) !important;
   overflow: visible;
+}
+
+body.maincontent main:has(.bigthinks) {
+  overflow: clip;
 }
 
 .bigthinks .splitpara.bigthinkspara {
@@ -981,6 +986,7 @@ a {
 }
 
 .bigthinklink {
+  color: inherit;
   display: block;
   width: fit-content;
   max-width: min(100%, 46rem);
@@ -989,6 +995,20 @@ a {
   margin-left: auto;
   padding: 0.42rem 0;
   line-height: 1.15;
+  text-decoration-color: transparent;
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.045em;
+  text-underline-offset: 0.16em;
+  transition: text-decoration-color 180ms ease;
+}
+
+.bigthinklink:is(:hover, :focus-visible) {
+  text-decoration-color: currentColor;
+}
+
+.bigthinks .marquee-content.scroll.footer {
+  margin-bottom: clamp(1.9rem, 2.8vw, 2.8rem) !important;
+  padding-top: clamp(1rem, 1.6vw, 1.5rem) !important;
 }
 
 .tiny {
@@ -1156,7 +1176,7 @@ section.footer {
   width: 100vw;
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
-  padding: 0 var(--haggard-page-x) clamp(1.4rem, 2vw, 2rem);
+  padding: 0 var(--haggard-page-x) clamp(0.7rem, 1vw, 1rem);
   text-align: center;
 }
 
@@ -1171,6 +1191,24 @@ section.footer .splitpara.jhppara.footerrr {
   font-size: 0.95rem !important;
   line-height: 1.35 !important;
   text-align: center !important;
+}
+
+.site-copyright-footer {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: clamp(2.2rem, 4vw, 4rem) var(--haggard-page-x) clamp(1.2rem, 2vw, 2rem);
+  text-align: center;
+}
+
+.site-copyright-footer p {
+  max-width: min(100%, 36rem);
+  margin: 0;
+  color: var(--haggard-muted);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.35;
 }
 
 .div-block-28 {

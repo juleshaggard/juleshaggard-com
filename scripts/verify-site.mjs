@@ -71,6 +71,10 @@ function localFileForUrl(url) {
     return path.join(DIST_ROOT, cleanUrl.replace(/^\//, ''));
   }
 
+  if (path.extname(cleanUrl)) {
+    return path.join(DIST_ROOT, cleanUrl.replace(/^\//, ''));
+  }
+
   return outputFileForRoute(cleanUrl);
 }
 
