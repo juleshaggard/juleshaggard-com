@@ -46,10 +46,22 @@ const initTestimonialHeartParticles = (grid: HTMLElement) => {
   const heartCharacters = ['💗', '💖', '💕'];
   let lastEmit = 0;
 
+  const getExpandedBandRect = (element: HTMLElement) => {
+    const rect = element.getBoundingClientRect();
+    const styles = getComputedStyle(element);
+    const marginTop = Number.parseFloat(styles.marginTop) || 0;
+    const marginBottom = Number.parseFloat(styles.marginBottom) || 0;
+
+    return {
+      top: rect.top - marginTop,
+      bottom: rect.bottom + marginBottom,
+    };
+  };
+
   const isInsideTestimonialBand = (event: PointerEvent) => {
     const rects = [heading, grid]
       .filter((element): element is HTMLElement => Boolean(element))
-      .map((element) => element.getBoundingClientRect());
+      .map(getExpandedBandRect);
     const top = Math.min(...rects.map((rect) => rect.top));
     const bottom = Math.max(...rects.map((rect) => rect.bottom));
     return event.clientY >= top && event.clientY <= bottom;
