@@ -14,7 +14,7 @@
   --haggard-page-x: 4rem;
   --haggard-section-y: 6rem;
   --haggard-page-hero-start: clamp(3rem, 5vw, 4.35rem);
-  --haggard-project-hero-start: 5.35rem;
+  --haggard-project-hero-start: 4rem;
   --haggard-pricing-coin-start: 6.5rem;
   --haggard-writing-hero-start: 6rem;
   --haggard-fast: cubic-bezier(0.22, 1, 0.36, 1);
@@ -513,9 +513,10 @@ a {
   gap: clamp(1.15rem, 2vw, 1.75rem);
   width: 100%;
   max-width: 82rem;
+  margin-top: 0 !important;
   margin-right: auto !important;
   margin-left: auto !important;
-  padding-top: clamp(5.75rem, 8vw, 7.5rem) !important;
+  padding-top: var(--haggard-page-hero-start) !important;
   padding-right: var(--haggard-page-x) !important;
   padding-bottom: clamp(3.5rem, 5vw, 5rem) !important;
   padding-left: var(--haggard-page-x) !important;
@@ -579,6 +580,50 @@ a {
   text-align: center;
 }
 
+.attention-eyes {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: clamp(5.8rem, 10vw, 8.5rem);
+  height: auto;
+  margin-bottom: clamp(-0.42rem, -0.4vw, -0.18rem);
+  overflow: visible;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+}
+
+.attention-pupil {
+  will-change: transform;
+}
+
+.attention-glitter-particle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  display: block;
+  width: var(--sparkle-size, 0.48rem);
+  height: var(--sparkle-size, 0.48rem);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, oklch(0.99 0.02 335) 0 18%, transparent 21%),
+    conic-gradient(
+      from 45deg,
+      transparent 0 13%,
+      var(--sparkle-color, oklch(0.84 0.13 345)) 14% 20%,
+      transparent 21% 38%,
+      var(--sparkle-color, oklch(0.84 0.13 345)) 39% 45%,
+      transparent 46% 100%
+    );
+  box-shadow:
+    0 0 0.55rem oklch(0.87 0.12 345 / 0.36),
+    0 0 1rem oklch(0.95 0.06 345 / 0.18);
+  pointer-events: none;
+  user-select: none;
+  transform: translate3d(0, 0, 0);
+  will-change: opacity, transform, filter;
+}
+
 .heading-3.topheader.herohero.downher {
   width: min(100%, 12em);
   max-width: 12em;
@@ -631,13 +676,14 @@ a {
 }
 
 .aboutintro:not(.hp):not(.pricing-coin) > .projecttitle.headertitledesc.lefty.brand-leader.morework {
+  margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
 .homecontainer > .div-block-28:first-child > .projecttitle.headertitledesc.lefty.brand-leader.morework.pricing:first-child {
   width: 100% !important;
   max-width: 18ch !important;
-  margin-top: clamp(2.5rem, 5vw, 5rem) !important;
+  margin-top: 0 !important;
   margin-bottom: clamp(1rem, 1.6vw, 1.5rem) !important;
 }
 
@@ -1555,7 +1601,7 @@ section.footer .splitpara.jhppara.footerrr {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     gap: 1rem;
-    padding-top: clamp(2.35rem, 9vw, 3.5rem) !important;
+    padding-top: var(--haggard-page-hero-start) !important;
     padding-bottom: clamp(2.6rem, 10vw, 4rem) !important;
   }
 

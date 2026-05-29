@@ -188,6 +188,195 @@ const initNavHoverGlow = () => {
 const testimonialGridSelector = '.aboutintro.hp.herohp.lowerdown.testimonials + .grid';
 const testimonialHeadingSelector = '.aboutintro.hp.herohp.lowerdown.testimonials';
 const isTestimonialCard = (element: HTMLElement) => element.matches(`${testimonialGridSelector} .paragraph-5`);
+const marketAttentionSelector = '.homecontainer .aboutintro.hp.herohp.lowerdown:not(.testimonials)';
+
+const initMarketAttentionInteraction = () => {
+  const section = document.querySelector<HTMLElement>(marketAttentionSelector);
+  if (!section || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    return () => {};
+  }
+
+  const eyesSvg = section.querySelector<SVGSVGElement>('.attention-eyes');
+  const pupils = gsap.utils.toArray<SVGElement>('.attention-pupil', section);
+  if (!pupils.length) {
+    return () => {};
+  }
+
+  const eyeGeometry = pupils.map((pupil) =>
+    pupil.classList.contains('attention-pupil--right')
+      ? { eyeX: 103.403, eyeY: 48, pupilX: 126.09, pupilY: 47.7612 }
+      : { eyeX: 31.7607, eyeY: 48, pupilX: 54.4478, pupilY: 47.7612 },
+  );
+
+  gsap.set(pupils, { x: 0, y: 0 });
+
+  const xSetters = pupils.map((pupil) => gsap.quickTo(pupil, 'x', { duration: 0.24, ease: 'power3.out' }));
+  const ySetters = pupils.map((pupil) => gsap.quickTo(pupil, 'y', { duration: 0.24, ease: 'power3.out' }));
+  const activeGlitters = new Set<HTMLElement>();
+  const activeTweens = new Set<gsap.core.Animation>();
+  const glitterTweens = new Map<HTMLElement, gsap.core.Animation>();
+  const glitterColors = [
+    'oklch(0.84 0.13 345)',
+    'oklch(0.91 0.09 338)',
+    'oklch(0.73 0.08 342)',
+    'oklch(0.97 0.025 330)',
+  ];
+  let lastEmit = 0;
+
+  const expandedSectionRect = () => {
+    const rect = section.getBoundingClientRect();
+    return {
+      top: rect.top - window.innerHeight * 0.1,
+      right: rect.right,
+      bottom: rect.bottom + window.innerHeight * 0.12,
+      left: rect.left,
+    };
+  };
+
+  const isInsideInteractionBand = (event: PointerEvent) => {
+    const rect = expandedSectionRect();
+    return (
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right &&
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom
+    );
+  };
+
+  const updateEyes = (event: PointerEvent) => {
+    if (!eyesSvg) {
+      return;
+    }
+
+    const svgRect = eyesSvg.getBoundingClientRect();
+
+    pupils.forEach((_, index) => {
+      const geometry = eyeGeometry[index];
+      const centerX = svgRect.left + (geometry.eyeX / 136) * svgRect.width;
+      const centerY = svgRect.top + (geometry.eyeY / 96) * svgRect.height;
+      const deltaX = event.clientX - centerX;
+      const deltaY = event.clientY - centerY;
+      const angle = Math.atan2(deltaY, deltaX);
+      const distance = Math.min(1, Math.hypot(deltaX, deltaY) / Math.max(window.innerWidth * 0.26, 280));
+      const targetPupilX = geometry.eyeX + Math.cos(angle) * 22.75 * distance;
+      const targetPupilY = geometry.eyeY + Math.sin(angle) * 9.25 * distance;
+      const svgScaleX = svgRect.width / 136;
+      const svgScaleY = svgRect.height / 96;
+
+      xSetters[index]((targetPupilX - geometry.pupilX) * svgScaleX);
+      ySetters[index]((targetPupilY - geometry.pupilY) * svgScaleY);
+    });
+  };
+
+  const removeGlitter = (glitter: HTMLElement, tween?: gsap.core.Animation) => {
+    const trackedTween = tween ?? glitterTweens.get(glitter);
+    trackedTween?.kill();
+    if (trackedTween) {
+      activeTweens.delete(trackedTween);
+      glitterTweens.delete(glitter);
+    }
+    activeGlitters.delete(glitter);
+    glitter.remove();
+  };
+
+  const emitGlitter = (event: PointerEvent) => {
+    const now = performance.now();
+    if (now - lastEmit < 28) {
+      return;
+    }
+
+    lastEmit = now;
+
+    const glitterCount = gsap.utils.random([2, 3]);
+
+    for (let i = 0; i < glitterCount; i += 1) {
+      if (activeGlitters.size > 64) {
+        const oldestGlitter = activeGlitters.values().next().value;
+        if (oldestGlitter) removeGlitter(oldestGlitter);
+      }
+
+      const glitter = document.createElement('span');
+      glitter.className = 'attention-glitter-particle';
+      glitter.setAttribute('aria-hidden', 'true');
+      glitter.style.setProperty('--sparkle-size', `${gsap.utils.random(5, 12)}px`);
+      glitter.style.setProperty('--sparkle-color', gsap.utils.random(glitterColors));
+      document.body.append(glitter);
+      activeGlitters.add(glitter);
+
+      const driftX = gsap.utils.random(-50, 50);
+      const driftY = gsap.utils.random(-52, 38);
+      const startScale = gsap.utils.random(0.46, 0.82);
+      const endScale = gsap.utils.random(1.35, 2.3);
+      const rotation = gsap.utils.random(-110, 110);
+      const duration = gsap.utils.random(0.62, 0.96);
+      const tween = gsap.timeline({ onComplete: () => removeGlitter(glitter, tween) });
+
+      tween.fromTo(
+        glitter,
+        {
+          x: event.clientX + gsap.utils.random(-10, 10),
+          y: event.clientY + gsap.utils.random(-10, 10),
+          scale: startScale,
+          rotation,
+          autoAlpha: 0.96,
+          filter: 'blur(0px)',
+        },
+        {
+          x: event.clientX + driftX,
+          y: event.clientY + driftY,
+          scale: endScale,
+          rotation: rotation + gsap.utils.random(-180, 180),
+          duration,
+          ease: 'power3.out',
+        },
+        0,
+      );
+
+      tween.to(
+        glitter,
+        {
+          filter: 'blur(3.6px)',
+          duration: duration * 0.48,
+          ease: 'power2.in',
+        },
+        duration * 0.36,
+      );
+
+      tween.to(
+        glitter,
+        {
+          autoAlpha: 0,
+          duration: duration * 0.62,
+          ease: 'power2.in',
+        },
+        duration * 0.3,
+      );
+
+      activeTweens.add(tween);
+      glitterTweens.set(glitter, tween);
+    }
+  };
+
+  const onPointerMove = (event: PointerEvent) => {
+    updateEyes(event);
+    if (isInsideInteractionBand(event)) {
+      emitGlitter(event);
+    }
+  };
+
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+
+  return () => {
+    window.removeEventListener('pointermove', onPointerMove);
+    activeTweens.forEach((tween) => tween.kill());
+    activeTweens.clear();
+    glitterTweens.clear();
+    activeGlitters.forEach((glitter) => glitter.remove());
+    activeGlitters.clear();
+    gsap.killTweensOf(pupils);
+    gsap.set(pupils, { clearProps: 'transform' });
+  };
+};
 
 const initTestimonialHeartParticles = (grid: HTMLElement) => {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
@@ -611,6 +800,7 @@ const initMotion = () => {
 
     initTestimonials();
     initAssociatePortraitCloud();
+    cleanupListeners.push(initMarketAttentionInteraction());
     cleanupListeners.push(initNavHoverGlow());
     cleanupListeners.push(initStickyNavVisibility());
     cleanupListeners.push(initCtaWebglButtons());

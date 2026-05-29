@@ -28,6 +28,24 @@ const associateFaces = Array.from({ length: 9 }, (_, index) => {
   };
 });
 
+const attentionEyesSvg = `
+<svg class="attention-eyes" width="136" height="96" viewBox="0 0 136 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <path d="M31.7607 1C40.0894 1 47.7557 6.10197 53.3857 14.6104C59.0107 23.1112 62.5225 34.9136 62.5225 48C62.5225 61.0864 59.0107 72.8888 53.3857 81.3896C47.7557 89.898 40.0894 95 31.7607 95C23.4323 94.9998 15.7666 89.8979 10.1367 81.3896C4.51178 72.8888 1 61.0864 1 48C1 34.9136 4.51178 23.1112 10.1367 14.6104C15.7666 6.10215 23.4323 1.00018 31.7607 1Z" stroke="#D0D0D0" stroke-width="2"/>
+  <path d="M103.403 1C111.731 1 119.398 6.10197 125.028 14.6104C130.652 23.1112 134.164 34.9136 134.164 48C134.164 61.0864 130.652 72.8888 125.028 81.3896C119.398 89.898 111.731 95 103.403 95C95.0741 94.9998 87.4084 89.8979 81.7785 81.3896C76.1536 72.8888 72.6418 61.0864 72.6418 48C72.6418 34.9136 76.1536 23.1112 81.7785 14.6104C87.4084 6.10215 95.0741 1.00018 103.403 1Z" stroke="#D0D0D0" stroke-width="2"/>
+  <mask id="attention-eye-mask-right" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="71" y="0" width="65" height="96">
+    <path d="M103.403 0.239258C112.068 0.239258 119.943 5.5467 125.662 14.1904C131.381 22.8324 134.925 34.7854 134.925 48C134.925 61.2146 131.381 73.1676 125.662 81.8096C119.943 90.4533 112.068 95.7607 103.403 95.7607C94.7377 95.7606 86.8632 90.4531 81.1437 81.8096C75.4254 73.1676 71.881 61.2146 71.881 48C71.881 34.7854 75.4254 22.8324 81.1437 14.1904C86.8632 5.54687 94.7377 0.239442 103.403 0.239258Z" fill="#D9D9D9" stroke="#D0D0D0" stroke-width="0.477612"/>
+  </mask>
+  <g mask="url(#attention-eye-mask-right)">
+    <ellipse class="attention-pupil attention-pupil--right" cx="126.09" cy="47.7612" rx="25.791" ry="34.8657" fill="#11100F"/>
+  </g>
+  <mask id="attention-eye-mask-left" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="96">
+    <path d="M31.7607 0.239258C40.4258 0.239258 48.301 5.5467 54.0205 14.1904C59.7388 22.8324 63.2832 34.7854 63.2832 48C63.2832 61.2146 59.7388 73.1676 54.0205 81.8096C48.301 90.4533 40.4258 95.7607 31.7607 95.7607C23.0959 95.7606 15.2214 90.4531 9.50195 81.8096C3.78361 73.1676 0.239258 61.2146 0.239258 48C0.239258 34.7854 3.78361 22.8324 9.50195 14.1904C15.2214 5.54687 23.0959 0.239442 31.7607 0.239258Z" fill="#D9D9D9" stroke="#D0D0D0" stroke-width="0.477612"/>
+  </mask>
+  <g mask="url(#attention-eye-mask-left)">
+    <ellipse class="attention-pupil attention-pupil--left" cx="54.4478" cy="47.7612" rx="25.791" ry="34.8657" fill="#11100F"/>
+  </g>
+</svg>`;
+
 function cleanText(value: string) {
   return value.replace(/\s+/g, ' ').replace(/\u200d/g, '').trim();
 }
@@ -370,6 +388,10 @@ function placeHomepageSmallProjects($: CheerioAPI, options: EnhanceContentOption
   const ibmWatson = $('a.projectblocklink[href="/projects/ibm-watson"]').first();
   const pagoda = $('a.projectblocklink[href="/projects/pagoda"]').first();
   const marketAttention = $('.aboutintro.hp.herohp.lowerdown').not('.testimonials').first();
+
+  if (marketAttention.length > 0 && marketAttention.find('.attention-eyes').length === 0) {
+    marketAttention.prepend(attentionEyesSvg);
+  }
 
   lightcone.add(pegman).removeClass('xl').addClass('quarter');
 
