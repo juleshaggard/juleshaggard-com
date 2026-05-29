@@ -452,14 +452,6 @@ const initMotion = () => {
         );
       });
 
-      const hoverLinks = gsap.utils.toArray<HTMLElement>('.navlink');
-      hoverLinks.forEach((link) => {
-        addHoverTween(
-          link,
-          { y: -1, duration: 0.22, ease: 'power2.out', overwrite: 'auto' },
-          { y: 0, duration: 0.28, ease: 'power2.out', overwrite: 'auto' },
-        );
-      });
     }
 
     initTestimonials();

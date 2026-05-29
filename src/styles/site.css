@@ -176,12 +176,38 @@ a {
 }
 
 .logo {
+  position: relative;
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   gap: 0.72rem;
+  margin: -0.38rem -0.58rem;
+  padding: 0.38rem 0.58rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
   color: var(--haggard-ink);
+  box-shadow: inset 0 0 0 0 transparent;
   text-decoration: none;
+  transition:
+    color 180ms var(--haggard-fast),
+    background-color 180ms var(--haggard-fast),
+    border-color 180ms var(--haggard-fast),
+    box-shadow 180ms var(--haggard-fast);
+  filter: none !important;
+}
+
+.logo:hover,
+.logo:focus-visible {
+  color: var(--haggard-ink);
+  background: transparent !important;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--haggard-ink);
+  filter: none !important;
+}
+
+.logo.w--current {
+  border-radius: 999px;
+  filter: none !important;
 }
 
 .navbar-logo {
@@ -218,6 +244,7 @@ a {
     color 180ms var(--haggard-fast),
     background-color 180ms var(--haggard-fast),
     border-color 180ms var(--haggard-fast),
+    box-shadow 180ms var(--haggard-fast),
     transform 180ms var(--haggard-fast);
 }
 
@@ -225,6 +252,16 @@ a {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+}
+
+.navlink {
+  color: var(--haggard-ink);
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: inset 0 0 0 0 transparent;
+}
+
+.ctalink {
   gap: 0.45rem;
   min-height: 2.75rem;
   padding: 0.7rem 1.25rem !important;
@@ -234,9 +271,12 @@ a {
 }
 
 .navlink:hover,
+.navlink:focus-visible,
 .navlink.w--current {
-  color: #fff;
-  background: var(--haggard-ink);
+  color: var(--haggard-ink);
+  background: transparent !important;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px var(--haggard-ink);
 }
 
 .navlink:focus-visible,
