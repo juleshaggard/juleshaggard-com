@@ -518,7 +518,7 @@ a {
   flex-direction: column !important;
   align-items: center !important;
   gap: clamp(1.25rem, 2vw, 1.8rem);
-  width: min(100%, 42rem) !important;
+  width: min(100%, 54rem) !important;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
@@ -526,13 +526,18 @@ a {
 
 .homecontainer > .aboutintro.hp.herohp .splitpara.jhppara {
   width: 100% !important;
-  max-width: 41rem;
+  max-width: 53rem;
   margin-bottom: 0 !important;
   margin-right: auto !important;
   margin-left: auto !important;
   font-size: clamp(1rem, 1.2vw, 1.12rem) !important;
   line-height: 1.48 !important;
   text-align: center !important;
+}
+
+.homecontainer > .aboutintro.hp.herohp .splitpara.jhppara:not(.smallpara) strong {
+  color: var(--haggard-ink);
+  font-weight: 700;
 }
 
 .homecontainer > .aboutintro.hp.herohp .flex-block-7 {
