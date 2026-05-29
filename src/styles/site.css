@@ -1031,6 +1031,10 @@ section.footer .splitpara.jhppara.footerrr {
   text-align: center;
 }
 
+#aboutmesection .div-block-17 > .paragraph-3.invert {
+  margin-bottom: min(2.5vw, 2.25rem) !important;
+}
+
 .projecttitle.headertitledesc.lefty.brand-leader.hp,
 .projecttitle.headertitledesc.lefty.brand-leader.morework,
 .disciplines,
