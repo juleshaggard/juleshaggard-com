@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initCtaWebglButtons } from './cta-webgl';
 import { initHeadlineReveals, initHeroIntro } from './hero-intro';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -444,6 +445,7 @@ const initMotion = () => {
 
     initTestimonials();
     initAssociatePortraitCloud();
+    cleanupListeners.push(initCtaWebglButtons());
     requestAnimationFrame(() => ScrollTrigger.refresh());
   });
 };

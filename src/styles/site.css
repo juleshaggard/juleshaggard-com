@@ -5,6 +5,11 @@
   --haggard-soft: #f6f3ee;
   --haggard-border: rgba(17, 16, 15, 0.14);
   --haggard-focus: rgba(17, 16, 15, 0.28);
+  --haggard-cta-pink: oklch(58% 0.25 352);
+  --haggard-cta-pink-dark: oklch(38% 0.18 354);
+  --haggard-cta-pink-hot: oklch(68% 0.27 350);
+  --haggard-cta-text: oklch(99% 0.006 350);
+  --haggard-cta-focus: oklch(67% 0.2 350 / 38%);
   --haggard-page-x: 4rem;
   --haggard-section-y: 6rem;
   --haggard-page-hero-start: clamp(5.75rem, 9vw, 7.75rem);
@@ -216,12 +221,15 @@ a {
 }
 
 .ctalink {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   gap: 0.45rem;
   min-height: 2.75rem;
   padding: 0.7rem 1.25rem !important;
-  color: #fff;
-  background: var(--haggard-ink);
-  border: 1px solid var(--haggard-ink);
+  color: var(--haggard-cta-text) !important;
+  background: var(--haggard-cta-pink) !important;
+  border: 1px solid var(--haggard-cta-pink) !important;
 }
 
 .navlink:hover,
@@ -231,7 +239,6 @@ a {
 }
 
 .navlink:focus-visible,
-.ctalink:focus-visible,
 .projectblocklink:focus-visible,
 .smallproject:focus-visible,
 .writingblocks:focus-visible {
@@ -239,13 +246,74 @@ a {
   box-shadow: 0 0 0 4px var(--haggard-focus);
 }
 
+.ctalink:focus-visible,
+.mainline.inver.rightsidecontact.contact:focus-visible {
+  outline-offset: 5px;
+  box-shadow: 0 0 0 4px var(--haggard-cta-focus);
+}
+
 .ctalink:hover {
-  color: var(--haggard-ink);
-  background: #fff;
+  color: var(--haggard-cta-text) !important;
+  background: var(--haggard-cta-pink-dark) !important;
+  border-color: var(--haggard-cta-pink-hot) !important;
 }
 
 .ctalink:active {
   transform: translateY(1px);
+}
+
+.mainline.inver.rightsidecontact.contact {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--haggard-cta-text) !important;
+  background: var(--haggard-cta-pink) !important;
+  border-color: var(--haggard-cta-pink) !important;
+}
+
+.mainline.inver.rightsidecontact.contact:hover {
+  color: var(--haggard-cta-text) !important;
+  background: var(--haggard-cta-pink-dark) !important;
+  border-color: var(--haggard-cta-pink-hot) !important;
+}
+
+.cta-label {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cta-noise-canvas {
+  position: absolute;
+  z-index: 1;
+  inset: -1px;
+  display: block;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms var(--haggard-fast);
+}
+
+.cta-webgl-ready:hover .cta-noise-canvas,
+.cta-webgl-ready:focus-visible .cta-noise-canvas,
+.cta-webgl-active .cta-noise-canvas {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-noise-canvas {
+    display: none;
+  }
+
+  .ctalink:hover,
+  .mainline.inver.rightsidecontact.contact:hover {
+    background: var(--haggard-cta-pink-dark) !important;
+  }
 }
 
 .homecontainer > .aboutintro.hp.herohp {
