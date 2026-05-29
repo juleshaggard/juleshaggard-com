@@ -94,6 +94,96 @@ const initTestimonials = () => {
   });
 };
 
+const initAssociatePortraitCloud = () => {
+  const cloud = document.querySelector<HTMLElement>('#aboutmesection .associate-portrait-cloud');
+  if (!cloud) {
+    return;
+  }
+
+  const faces = gsap.utils.toArray<HTMLElement>('.associate-face', cloud);
+  if (!faces.length) {
+    return;
+  }
+
+  const random = gsap.utils.random;
+  const orbits = faces.map(() => {
+    const radius = random(195, 285);
+    const alpha = random(-Math.PI / 2.2, Math.PI / 2.2);
+    const beta = random(-Math.PI / 2.2, Math.PI / 2.2);
+    const speed = random(0.00018, 0.0004) * (Math.random() < 0.4 ? -1 : 1);
+    const phase = random(0, Math.PI * 2);
+    return {
+      radius,
+      cosA: Math.cos(alpha),
+      sinA: Math.sin(alpha),
+      cosB: Math.cos(beta),
+      sinB: Math.sin(beta),
+      speed,
+      phase,
+    };
+  });
+
+  const writePositions = (time: number) => {
+    for (let i = 0; i < faces.length; i += 1) {
+      const o = orbits[i];
+      const angle = o.phase + time * o.speed;
+      const cosT = Math.cos(angle);
+      const sinT = Math.sin(angle);
+
+      const x0 = cosT;
+      const y0 = sinT * o.cosA;
+      const z0 = sinT * o.sinA;
+
+      const x = (x0 * o.cosB + z0 * o.sinB) * o.radius;
+      const y = y0 * o.radius;
+      const z = (-x0 * o.sinB + z0 * o.cosB) * o.radius;
+
+      const depth = z / o.radius;
+      const scale = 1 + depth * 0.28;
+
+      const face = faces[i];
+      const style = face.style;
+      style.setProperty('--x', `${x}px`);
+      style.setProperty('--y', `${y}px`);
+      style.setProperty('--depth-scale', scale.toFixed(3));
+      style.zIndex = depth >= 0 ? '3' : '1';
+    }
+  };
+
+  writePositions(0);
+  gsap.set(faces, { autoAlpha: 0, '--reveal-scale': 0.35, '--float-y': '0px' });
+
+  let tickerFn: ((time: number) => void) | undefined;
+  const startTicker = () => {
+    const startTime = performance.now();
+    tickerFn = () => writePositions(performance.now() - startTime);
+    gsap.ticker.add(tickerFn);
+  };
+
+  cleanupListeners.push(() => {
+    if (tickerFn) {
+      gsap.ticker.remove(tickerFn);
+      tickerFn = undefined;
+    }
+  });
+
+  ScrollTrigger.create({
+    trigger: cloud,
+    start: 'top 82%',
+    once: true,
+    onEnter: () => {
+      startTicker();
+      gsap.to(faces, {
+        autoAlpha: 1,
+        '--reveal-scale': 1,
+        duration: 0.9,
+        ease: 'back.out(1.6)',
+        stagger: { each: 0.07, from: 'random' },
+      });
+    },
+  });
+};
+
 const initMotion = () => {
   const pageKey = `${window.location.pathname}${window.location.search}`;
   if (currentPageKey === pageKey && motionContext) {
@@ -216,6 +306,7 @@ const initMotion = () => {
     }
 
     initTestimonials();
+    initAssociatePortraitCloud();
     requestAnimationFrame(() => ScrollTrigger.refresh());
   });
 };
