@@ -5,10 +5,11 @@
   --haggard-soft: #f6f3ee;
   --haggard-border: rgba(17, 16, 15, 0.14);
   --haggard-focus: rgba(17, 16, 15, 0.28);
-  --haggard-cta-pink: oklch(58% 0.25 352);
-  --haggard-cta-pink-dark: oklch(38% 0.18 354);
-  --haggard-cta-pink-hot: oklch(68% 0.27 350);
-  --haggard-cta-text: oklch(99% 0.006 350);
+  --haggard-cta-pink: #FFCDE2;
+  --haggard-cta-pink-dark: oklch(39% 0.19 354);
+  --haggard-cta-pink-hot: oklch(69% 0.29 350);
+  --haggard-cta-text: var(--haggard-ink);
+  --haggard-cta-text-hover: oklch(99% 0.006 350);
   --haggard-cta-focus: oklch(67% 0.2 350 / 38%);
   --haggard-page-x: 4rem;
   --haggard-section-y: 6rem;
@@ -252,8 +253,9 @@ a {
   box-shadow: 0 0 0 4px var(--haggard-cta-focus);
 }
 
-.ctalink:hover {
-  color: var(--haggard-cta-text) !important;
+.ctalink:hover,
+.ctalink:focus-visible {
+  color: var(--haggard-cta-text-hover) !important;
   background: var(--haggard-cta-pink-dark) !important;
   border-color: var(--haggard-cta-pink-hot) !important;
 }
@@ -271,8 +273,9 @@ a {
   border-color: var(--haggard-cta-pink) !important;
 }
 
-.mainline.inver.rightsidecontact.contact:hover {
-  color: var(--haggard-cta-text) !important;
+.mainline.inver.rightsidecontact.contact:hover,
+.mainline.inver.rightsidecontact.contact:focus-visible {
+  color: var(--haggard-cta-text-hover) !important;
   background: var(--haggard-cta-pink-dark) !important;
   border-color: var(--haggard-cta-pink-hot) !important;
 }

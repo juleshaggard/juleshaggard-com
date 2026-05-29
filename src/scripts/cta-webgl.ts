@@ -53,18 +53,47 @@ const fragmentShaderSource = `
     vec2 aspect = vec2(max(u_resolution.x / max(u_resolution.y, 1.0), 1.0), 1.0);
     vec2 field = uv * aspect;
     float time = u_time * 0.001;
-    float grain = fbm(field * 4.4 + vec2(time * 0.32, -time * 0.22));
-    float silk = sin((uv.x * 9.4) + (uv.y * 4.2) + (time * 2.0) + grain * 4.8) * 0.5 + 0.5;
-    float pulse = fbm(field * 8.0 - vec2(time * 0.74, time * 0.18));
-    float pointerGlow = smoothstep(0.56, 0.0, distance(uv, u_pointer));
-    float mixValue = smoothstep(0.34, 0.9, grain * 0.62 + silk * 0.3 + pulse * 0.16 + pointerGlow * 0.34);
+    float pointerGlow = smoothstep(0.62, 0.0, distance(uv, u_pointer));
+    float satin = sin((uv.x * 16.0) - (uv.y * 5.2) + time * 2.1) * 0.5 + 0.5;
+    float fineNoise = noise(field * 18.0 + vec2(time * 0.9, -time * 0.44));
+    float ribbon = smoothstep(0.16, 1.0, satin * 0.35 + fineNoise * 0.18 + pointerGlow * 0.35);
 
-    vec3 darkPink = vec3(0.58, 0.018, 0.285);
-    vec3 brightPink = vec3(0.995, 0.12, 0.55);
-    vec3 hotPink = vec3(1.0, 0.48, 0.74);
-    vec3 color = mix(darkPink, brightPink, mixValue);
-    color = mix(color, hotPink, pointerGlow * 0.34);
-    color += (noise(uv * u_resolution.xy * 0.58 + time * 8.0) - 0.5) * 0.045;
+    vec2 glitterGridA = uv * u_resolution.xy / 7.0 + vec2(time * 1.6, -time * 0.8);
+    vec2 glitterCellA = floor(glitterGridA);
+    vec2 glitterLocalA = fract(glitterGridA) - 0.5;
+    float glitterSeedA = hash(glitterCellA);
+    float glitterPickA = step(0.66, glitterSeedA);
+    float glitterTwinkleA = pow(sin(time * 14.0 + glitterSeedA * 28.0) * 0.5 + 0.5, 7.0);
+    float glitterDotA = smoothstep(0.32, 0.0, length(glitterLocalA));
+    float glitterSquareA = smoothstep(0.24, 0.0, max(abs(glitterLocalA.x), abs(glitterLocalA.y)));
+    float glitterCrossA =
+      smoothstep(0.04, 0.0, abs(glitterLocalA.x)) +
+      smoothstep(0.04, 0.0, abs(glitterLocalA.y));
+    float glitterA = glitterPickA * glitterTwinkleA * max(glitterSquareA * 0.72, glitterDotA * clamp(glitterCrossA, 0.0, 1.0));
+
+    vec2 glitterGridB = uv * u_resolution.xy / 10.5 - vec2(time * 0.8, time * 1.1);
+    vec2 glitterCellB = floor(glitterGridB);
+    vec2 glitterLocalB = fract(glitterGridB) - 0.5;
+    float glitterSeedB = hash(glitterCellB + 19.7);
+    float glitterPickB = step(0.76, glitterSeedB);
+    float glitterTwinkleB = pow(sin(time * 10.0 + glitterSeedB * 31.0) * 0.5 + 0.5, 5.0);
+    float glitterStarB =
+      smoothstep(0.25, 0.0, abs(glitterLocalB.x + glitterLocalB.y)) *
+      smoothstep(0.25, 0.0, abs(glitterLocalB.x - glitterLocalB.y));
+    float glitterB = glitterPickB * glitterTwinkleB * glitterStarB;
+
+    float sugar =
+      smoothstep(0.88, 0.99, noise(uv * u_resolution.xy * 0.82 + vec2(time * 7.4, -time * 6.2))) * 0.42;
+
+    vec3 basePink = vec3(0.88, 0.02, 0.43);
+    vec3 brightPink = vec3(1.0, 0.18, 0.58);
+    vec3 candyPink = vec3(1.0, 0.48, 0.76);
+    vec3 glitterPink = vec3(1.0, 0.88, 0.98);
+    vec3 color = mix(basePink, brightPink, ribbon);
+    color = mix(color, candyPink, pointerGlow * 0.28);
+    color = mix(color, glitterPink, clamp(glitterA * 0.98 + glitterB * 0.9 + sugar * 0.28, 0.0, 1.0));
+    color += vec3(0.11, 0.018, 0.08) * (glitterA + glitterB);
+    color += (fineNoise - 0.5) * 0.018;
 
     gl_FragColor = vec4(color, 1.0);
   }
