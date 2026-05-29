@@ -221,7 +221,7 @@ a {
 .nav-hover-glow {
   position: absolute;
   z-index: 0;
-  top: -6.6rem;
+  top: -5.9rem;
   left: 0;
   width: clamp(12rem, 21vw, 18rem);
   height: 9.25rem;
