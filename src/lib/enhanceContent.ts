@@ -411,6 +411,43 @@ function placeHomepageSmallProjects($: CheerioAPI, options: EnhanceContentOption
   }
 }
 
+function formatHomepageMarketAttentionCopy($: CheerioAPI, options: EnhanceContentOptions) {
+  if (options.currentPath !== '/') return;
+
+  const marketAttention = $('.aboutintro.hp.herohp.lowerdown').not('.testimonials').first();
+  const target = marketAttention
+    .find('p.brand-attention-copy')
+    .filter((_, element) => cleanText($(element).text()).startsWith('That is usually where Haggard helps:'))
+    .first();
+
+  if (target.length === 0) return;
+
+  const wrapper = $('<div></div>').addClass('brand-attention-points');
+  wrapper.append(
+    $('<p></p>')
+      .addClass('splitpara jhppara brand-attention-copy brand-attention-lede')
+      .text('That is where Haggard helps.'),
+  );
+
+  const list = $('<ul></ul>').addClass('brand-attention-list');
+  [
+    'Turning scattered value into a clear position.',
+    'A sharper identity.',
+    'An AI-ready brand system the whole company can easily use without watering it down.',
+  ].forEach((item) => {
+    list.append($('<li></li>').text(item));
+  });
+
+  wrapper.append(list);
+  target.replaceWith(wrapper);
+}
+
+function markAboutHero($: CheerioAPI, options: EnhanceContentOptions) {
+  if (options.currentPath !== '/about') return;
+
+  $('.homecontainer > .aboutintro').first().addClass('about-hero');
+}
+
 function projectSlugFromPath(path: string) {
   const match = path.match(/^\/projects\/([^/]+)\/?$/);
   return match?.[1] ?? '';
@@ -463,6 +500,8 @@ export function enhanceContentHtml(html: string, options: EnhanceContentOptions)
   stripEmptyNoise($);
   replaceAssociateCollage($);
   placeHomepageSmallProjects($, options);
+  formatHomepageMarketAttentionCopy($, options);
+  markAboutHero($, options);
   injectProjectDeliverables($, options);
   rewriteRootRelativeUrls($);
 

@@ -295,6 +295,7 @@ const initMarketAttentionInteraction = () => {
   const shadowRotationTo = gsap.quickTo(butterflyShadow, 'rotation', { duration: 0.34, ease: 'power3.out' });
   let butterflyVisible = false;
   let hasPointerPosition = false;
+  let pointerIsInsideBand = false;
   let currentScale = 0.96;
   let currentShadowScale = 0.58;
   let lastPointerX = 0;
@@ -352,6 +353,8 @@ const initMarketAttentionInteraction = () => {
   };
 
   const hideButterfly = () => {
+    hasPointerPosition = false;
+
     if (!butterflyVisible) {
       return;
     }
@@ -380,21 +383,36 @@ const initMarketAttentionInteraction = () => {
     gsap.to(butterflyShadowScaler, { scale: 0.18, duration: 0.22, ease: 'power3.in', overwrite: 'auto' });
   };
 
-  const updateButterfly = (event: PointerEvent) => {
+  const snapButterflyToPointer = (event: PointerEvent, now: number) => {
+    const shadowX = event.clientX + 72;
+    const shadowY = event.clientY + 30;
+
+    hasPointerPosition = true;
+    lastPointerX = event.clientX;
+    lastPointerY = event.clientY;
+    lastPointerTime = now;
+    currentScale = 0.96;
+    currentShadowScale = 0.58;
+
+    gsap.set(butterfly, { x: event.clientX, y: event.clientY, rotation: 0 });
+    gsap.set(butterflyShadow, { x: shadowX, y: shadowY, rotation: 0 });
+    gsap.set(butterflyScaler, { scale: currentScale });
+    gsap.set(butterflyShadowScaler, { scale: currentShadowScale });
+
+    xTo(event.clientX, event.clientX);
+    yTo(event.clientY, event.clientY);
+    rotationTo(0, 0);
+    shadowXTo(shadowX, shadowX);
+    shadowYTo(shadowY, shadowY);
+    shadowRotationTo(0, 0);
+  };
+
+  const updateButterfly = (event: PointerEvent, forceSpawnAtPointer = false) => {
     const now = performance.now();
-    const shouldSpawnAtPointer = !hasPointerPosition || !butterflyVisible;
+    const shouldSpawnAtPointer = forceSpawnAtPointer || !hasPointerPosition || !butterflyVisible;
 
     if (shouldSpawnAtPointer) {
-      hasPointerPosition = true;
-      lastPointerX = event.clientX;
-      lastPointerY = event.clientY;
-      lastPointerTime = now;
-      currentScale = 0.96;
-      currentShadowScale = 0.58;
-      gsap.set(butterfly, { x: event.clientX, y: event.clientY, rotation: 0 });
-      gsap.set(butterflyShadow, { x: event.clientX + 72, y: event.clientY + 30, rotation: 0 });
-      gsap.set(butterflyScaler, { scale: currentScale });
-      gsap.set(butterflyShadowScaler, { scale: currentShadowScale });
+      snapButterflyToPointer(event, now);
       return;
     }
 
@@ -487,20 +505,29 @@ const initMarketAttentionInteraction = () => {
 
   const onPointerMove = (event: PointerEvent) => {
     updateEyes(event);
-    if (isInsideInteractionBand(event)) {
-      updateButterfly(event);
+    const isInsideBand = isInsideInteractionBand(event);
+
+    if (isInsideBand) {
+      updateButterfly(event, !pointerIsInsideBand);
       showButterfly();
     } else {
       hideButterfly();
     }
+
+    pointerIsInsideBand = isInsideBand;
+  };
+
+  const onWindowBlur = () => {
+    pointerIsInsideBand = false;
+    hideButterfly();
   };
 
   window.addEventListener('pointermove', onPointerMove, { passive: true });
-  window.addEventListener('blur', hideButterfly);
+  window.addEventListener('blur', onWindowBlur);
 
   return () => {
     window.removeEventListener('pointermove', onPointerMove);
-    window.removeEventListener('blur', hideButterfly);
+    window.removeEventListener('blur', onWindowBlur);
     document.body.classList.remove('is-attention-butterfly-cursor');
     wingFlap.kill();
     flightBob.kill();

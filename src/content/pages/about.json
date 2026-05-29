@@ -3,7 +3,7 @@
   "sourceUrl": "https://www.haggard.design/about",
   "title": "About",
   "description": "Meet Haggard & Associates, a San Francisco brand studio focused on practical, purposeful identity systems.",
-  "bodyClass": "maincontent",
+  "bodyClass": "maincontent about-page",
   "ogImage": "/assets/social-image.png",
   "htmlFile": "pages/about.html",
   "lastMigrated": "2026-05-28T05:19:48.331Z"
