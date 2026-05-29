@@ -105,62 +105,71 @@ const initAssociatePortraitCloud = () => {
     return;
   }
 
-  const random = gsap.utils.random;
-  const orbits = faces.map(() => {
-    const radius = random(195, 285);
-    const alpha = random(-Math.PI / 2.2, Math.PI / 2.2);
-    const beta = random(-Math.PI / 2.2, Math.PI / 2.2);
-    const speed = random(0.00018, 0.0004) * (Math.random() < 0.4 ? -1 : 1);
-    const phase = random(0, Math.PI * 2);
-    return {
-      radius,
-      cosA: Math.cos(alpha),
-      sinA: Math.sin(alpha),
-      cosB: Math.cos(beta),
-      sinB: Math.sin(beta),
-      speed,
-      phase,
-    };
-  });
+  const orbitPlanes = [
+    { rx: 0.49, ry: 0.16, rotation: -4, depth: 0.9, speed: 0.00013 },
+    { rx: 0.48, ry: 0.17, rotation: -34, depth: 0.78, speed: -0.00011 },
+    { rx: 0.46, ry: 0.155, rotation: 31, depth: 0.84, speed: 0.00015 },
+  ];
+  const faceOrbitIndexes = [1, 2, 0, 0, 2, 1, 0, 2, 1];
+  const facePhases = [0.04, 0.61, 0.86, 0.17, 0.42, 0.78, 0.55, 0.3, 0.93];
+  const faceSpeedMultipliers = [0.95, 1.08, 0.86, 1.16, 0.92, 1.04, 0.82, 1.12, 0.98];
+  const tau = Math.PI * 2;
+  let elapsed = 0;
+
+  const getCloudWidth = () => Math.max(320, cloud.getBoundingClientRect().width);
 
   const writePositions = (time: number) => {
+    const cloudWidth = getCloudWidth();
+
     for (let i = 0; i < faces.length; i += 1) {
-      const o = orbits[i];
-      const angle = o.phase + time * o.speed;
+      const plane = orbitPlanes[faceOrbitIndexes[i] % orbitPlanes.length];
+      const angle = facePhases[i] * tau + time * plane.speed * faceSpeedMultipliers[i];
       const cosT = Math.cos(angle);
       const sinT = Math.sin(angle);
+      const rx = cloudWidth * plane.rx;
+      const ry = cloudWidth * plane.ry;
+      const rotation = (plane.rotation * Math.PI) / 180;
+      const cosR = Math.cos(rotation);
+      const sinR = Math.sin(rotation);
 
-      const x0 = cosT;
-      const y0 = sinT * o.cosA;
-      const z0 = sinT * o.sinA;
-
-      const x = (x0 * o.cosB + z0 * o.sinB) * o.radius;
-      const y = y0 * o.radius;
-      const z = (-x0 * o.sinB + z0 * o.cosB) * o.radius;
-
-      const depth = z / o.radius;
-      const scale = 1 + depth * 0.28;
+      const orbitX = cosT * rx;
+      const orbitY = sinT * ry;
+      const x = orbitX * cosR - orbitY * sinR;
+      const y = orbitX * sinR + orbitY * cosR;
+      const depth = sinT * plane.depth;
+      const depthProgress = (depth + 1) / 2;
+      const scale = 0.76 + depthProgress * 0.48;
+      const opacity = 0.48 + depthProgress * 0.52;
 
       const face = faces[i];
       const style = face.style;
       style.setProperty('--x', `${x}px`);
       style.setProperty('--y', `${y}px`);
       style.setProperty('--depth-scale', scale.toFixed(3));
-      style.zIndex = depth >= 0 ? '3' : '1';
+      style.setProperty('--orbit-opacity', opacity.toFixed(3));
+      style.zIndex = depth > -0.08 ? '6' : '1';
     }
   };
 
   writePositions(0);
-  gsap.set(faces, { autoAlpha: 0, '--reveal-scale': 0.35, '--float-y': '0px' });
+  gsap.set(faces, { '--reveal-alpha': 0, '--reveal-scale': 0.35, '--float-y': '0px' });
 
   let tickerFn: ((time: number) => void) | undefined;
   const startTicker = () => {
     const startTime = performance.now();
-    tickerFn = () => writePositions(performance.now() - startTime);
+    tickerFn = () => {
+      elapsed = performance.now() - startTime;
+      writePositions(elapsed);
+    };
     gsap.ticker.add(tickerFn);
   };
 
+  const onResize = () => writePositions(elapsed);
+  window.addEventListener('resize', onResize);
+
   cleanupListeners.push(() => {
+    window.removeEventListener('resize', onResize);
+
     if (tickerFn) {
       gsap.ticker.remove(tickerFn);
       tickerFn = undefined;
@@ -174,10 +183,10 @@ const initAssociatePortraitCloud = () => {
     onEnter: () => {
       startTicker();
       gsap.to(faces, {
-        autoAlpha: 1,
+        '--reveal-alpha': 1,
         '--reveal-scale': 1,
         duration: 0.9,
-        ease: 'back.out(1.6)',
+        ease: 'power4.out',
         stagger: { each: 0.07, from: 'random' },
       });
     },

@@ -875,30 +875,32 @@ section.footer .splitpara.jhppara.footerrr {
   width: min(100%, 48rem) !important;
   margin-right: auto !important;
   margin-left: auto !important;
+  margin-top: clamp(0.35rem, 1.4vw, 0.9rem) !important;
 }
 
 #aboutmesection .flex-block-4 {
+  --portrait-top-offset: clamp(1.7rem, 3vw, 2.65rem);
   position: relative;
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
   align-items: start !important;
   justify-items: center !important;
-  width: min(100%, 44rem) !important;
-  min-height: clamp(34rem, 55vw, 44rem);
-  margin: clamp(1rem, 3vw, 2rem) auto 0 !important;
+  width: min(100%, 48rem) !important;
+  min-height: clamp(29rem, 47vw, 38rem);
+  margin: 0 auto !important;
   padding-top: 0 !important;
+  isolation: isolate;
 }
 
 #aboutmesection .associate-portrait-cloud {
-  --cloud-size: clamp(24rem, 42vw, 38rem);
+  --cloud-size: clamp(25rem, 46vw, 43rem);
   --face-size: clamp(2.15rem, 4vw, 4.1rem);
   position: absolute;
-  top: 0;
-  left: 50%;
+  top: var(--portrait-top-offset);
+  left: calc(50% - (var(--cloud-size) / 2));
   width: var(--cloud-size);
-  height: calc(var(--cloud-size) * 0.84);
+  height: calc(var(--cloud-size) * 0.75);
   pointer-events: none;
-  transform: translateX(-50%);
 }
 
 #aboutmesection .associate-face {
@@ -911,10 +913,11 @@ section.footer .splitpara.jhppara.footerrr {
   overflow: hidden;
   background: #fff;
   border-radius: 999px;
-  box-shadow: 0 0.55rem 1.4rem rgba(17, 16, 15, 0.12);
+  box-shadow: 0 0.65rem 1.6rem rgba(17, 16, 15, 0.13);
   transform: translate(-50%, -50%) translate(var(--x), var(--y))
     scale(var(--reveal-scale, 1)) scale(var(--depth-scale, 1));
   transform-origin: 50% 50%;
+  opacity: calc(var(--reveal-alpha, 1) * var(--orbit-opacity, 1));
   will-change: opacity, transform;
 }
 
@@ -991,7 +994,7 @@ section.footer .splitpara.jhppara.footerrr {
   left: auto !important;
   width: clamp(16rem, 25vw, 22rem) !important;
   max-width: 70vw;
-  margin: clamp(5.3rem, 8vw, 7rem) auto 0 !important;
+  margin: var(--portrait-top-offset) auto 0 !important;
   padding: 0 !important;
 }
 
@@ -1445,8 +1448,9 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   #aboutmesection .flex-block-4 {
+    --portrait-top-offset: clamp(1.5rem, 4.5vw, 2.3rem);
     width: min(100%, 34rem) !important;
-    min-height: clamp(30rem, 92vw, 38rem);
+    min-height: clamp(27rem, 82vw, 34rem);
   }
 
   #aboutmesection .associate-portrait-cloud {
@@ -1455,7 +1459,7 @@ section.footer .splitpara.jhppara.footerrr {
 
   #aboutmesection .image-8 {
     width: clamp(14.75rem, 46vw, 18rem) !important;
-    margin-top: clamp(4.5rem, 10vw, 5.7rem) !important;
+    margin-top: var(--portrait-top-offset) !important;
   }
 
   .flex-block-6 {
@@ -1608,7 +1612,8 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   #aboutmesection .flex-block-4 {
-    min-height: clamp(28rem, 120vw, 32rem);
+    --portrait-top-offset: clamp(1.3rem, 6vw, 2rem);
+    min-height: clamp(24rem, 108vw, 29rem);
   }
 
   #aboutmesection .associate-portrait-cloud {
@@ -1617,7 +1622,7 @@ section.footer .splitpara.jhppara.footerrr {
 
   #aboutmesection .image-8 {
     width: clamp(12.75rem, 58vw, 15rem) !important;
-    margin-top: clamp(4.1rem, 14vw, 4.8rem) !important;
+    margin-top: var(--portrait-top-offset) !important;
   }
 
   #aboutmesection .flex-block-6 {
