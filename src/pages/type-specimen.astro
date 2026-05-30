@@ -1,0 +1,416 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+type TypeSample = {
+  name: string;
+  tag: string;
+  selector: string;
+  note: string;
+  markup: string;
+  measureSelector?: string;
+};
+
+const samples: TypeSample[] = [
+  {
+    name: 'Display headline',
+    tag: 'h1 / h2',
+    selector: '.site-display-headline',
+    note: 'Shared large headline class for H1s, pricing package headlines, about feature headlines, and the homepage section headline.',
+    markup: '<h1 class="site-display-headline">Haggard makes the market pay attention.</h1>',
+    measureSelector: '.site-display-headline',
+  },
+  {
+    name: 'Small serif section headline',
+    tag: 'h2',
+    selector: '.mainline.smallhomesection',
+    note: 'Uses the pricing copy headline scale with centered alignment.',
+    markup: '<h2 class="mainline smallhomesection">Select clients</h2>',
+    measureSelector: '.mainline',
+  },
+  {
+    name: 'Project card title',
+    tag: 'h2',
+    selector: '.projecttitle, .projecttitleworkpage',
+    note: 'Used on project cards; work page project titles share this treatment.',
+    markup: '<h2 class="projecttitle">Notebook LM</h2>',
+    measureSelector: '.projecttitle',
+  },
+  {
+    name: 'Pricing copy headline',
+    tag: 'h4',
+    selector: '.heading-4',
+    note: 'Body-section headline used in pricing and about copy blocks.',
+    markup: '<h4 class="heading-4">Presentation sets the tone before you say a word.</h4>',
+    measureSelector: '.heading-4',
+  },
+  {
+    name: 'Services column headline',
+    tag: 'h3',
+    selector: '.service-pill-group__title',
+    note: 'Uses the project card title scale with centered alignment.',
+    markup: '<h3 class="service-pill-group__title">Digital</h3>',
+    measureSelector: '.service-pill-group__title',
+  },
+  {
+    name: 'Writing subheadline',
+    tag: 'h2',
+    selector: '.posttext h2',
+    note: 'Uses the project card title scale with writing-page alignment.',
+    markup: '<div class="posttext"><h2>Designing for memory</h2></div>',
+    measureSelector: '.posttext h2',
+  },
+  {
+    name: 'Eyebrow',
+    tag: 'p',
+    selector: '.subline.homesub',
+    note: 'Small contextual line above or around project copy.',
+    markup: '<p class="subline homesub">Branding & identity & digital & motion</p>',
+    measureSelector: '.subline',
+  },
+  {
+    name: 'Body copy',
+    tag: 'p',
+    selector: '.site-body-copy',
+    note: 'Shared paragraph class for body copy, case study body copy, and writing body copy.',
+    markup:
+      '<p class="site-body-copy">Haggard builds brand design systems that make your unique value obvious to your entire market.</p>',
+    measureSelector: '.site-body-copy',
+  },
+  {
+    name: 'Testimonial quote',
+    tag: 'span',
+    selector: '.paragraph-5 .text-span-7',
+    note: 'Client quote treatment on the homepage testimonials section.',
+    markup:
+      '<p class="paragraph-5"><span class="text-span-7">"Haggard recognized what makes us unique and worked with our internal marketing team to establish our brand identity."</span></p>',
+    measureSelector: '.text-span-7',
+  },
+  {
+    name: 'Testimonial attribution',
+    tag: 'span',
+    selector: '.paragraph-5 .text-span-8 strong',
+    note: 'Client name and role line.',
+    markup: '<p class="paragraph-5"><span class="text-span-8"><strong>Ellie Strube, marketing director, Original Syndicate</strong></span></p>',
+    measureSelector: '.text-span-8 strong',
+  },
+  {
+    name: 'Navigation link',
+    tag: 'a',
+    selector: '.navlink .navlink-label',
+    note: 'Primary nav text.',
+    markup: '<a class="navlink" href="#"><span class="navlink-label">Work</span></a>',
+    measureSelector: '.navlink-label',
+  },
+  {
+    name: 'Button',
+    tag: 'a',
+    selector: '.ctalink',
+    note: 'Primary CTA button.',
+    markup: '<a class="ctalink" href="#">Book a 15 min call</a>',
+    measureSelector: '.ctalink',
+  },
+  {
+    name: 'Service pill',
+    tag: 'span',
+    selector: '.service-pill',
+    note: 'Compact services taxonomy item.',
+    markup: '<span class="service-pill">Brand positioning</span>',
+    measureSelector: '.service-pill',
+  },
+  {
+    name: 'Logo wordmark',
+    tag: 'span',
+    selector: '.logo-wordmark',
+    note: 'Nav wordmark next to the logo.',
+    markup: '<span class="logo-wordmark">Haggard &amp; Associates</span>',
+    measureSelector: '.logo-wordmark',
+  },
+  {
+    name: 'Footer copyright',
+    tag: 'p',
+    selector: '.site-copyright-footer p',
+    note: 'Centered site footer line.',
+    markup:
+      '<footer class="site-copyright-footer"><p>&copy; 2026 Haggard &amp; Associates &middot; San Francisco, California</p></footer>',
+    measureSelector: '.site-copyright-footer p',
+  },
+];
+---
+
+<BaseLayout
+  title="Type specimen"
+  description="A private typography specimen for Haggard & Associates."
+  bodyClass="maincontent type-specimen-body"
+  currentPath="/type-specimen"
+>
+  <section class="type-specimen" aria-labelledby="type-specimen-title">
+    <header class="type-specimen__header">
+      <p class="type-specimen__kicker">Private reference page</p>
+      <h1 id="type-specimen-title" class="site-display-headline">Type specimen.</h1>
+      <p class="site-body-copy">
+        A non-linked reference for the live typography treatments, tags, and selectors used across the site.
+      </p>
+    </header>
+
+    <div class="type-specimen__list" aria-label="Typography samples">
+      {
+        samples.map((sample) => (
+          <article class="type-specimen__item">
+            <div class="type-specimen__meta">
+              <h2>{sample.name}</h2>
+              <dl class="type-specimen__basics">
+                <div>
+                  <dt>Tag</dt>
+                  <dd>
+                    <code>{sample.tag}</code>
+                  </dd>
+                </div>
+                <div>
+                  <dt>Selector</dt>
+                  <dd>
+                    <code>{sample.selector}</code>
+                  </dd>
+                </div>
+              </dl>
+              <dl
+                class="type-specimen__values"
+                data-type-values
+                data-measure-selector={sample.measureSelector}
+                aria-label={`${sample.name} computed type values`}
+              >
+                <div>
+                  <dt>Size</dt>
+                  <dd data-type-value="size">Measuring</dd>
+                </div>
+                <div>
+                  <dt>Leading</dt>
+                  <dd data-type-value="leading">Measuring</dd>
+                </div>
+                <div>
+                  <dt>Tracking</dt>
+                  <dd data-type-value="tracking">Measuring</dd>
+                </div>
+                <div>
+                  <dt>Alignment</dt>
+                  <dd data-type-value="alignment">Measuring</dd>
+                </div>
+              </dl>
+              <p>{sample.note}</p>
+            </div>
+            <div class="type-specimen__sample" set:html={sample.markup} />
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const formatTypeValue = (value: string) => {
+    if (!value || value === 'normal') return value || 'normal';
+    const numeric = Number.parseFloat(value);
+    return Number.isFinite(numeric) ? `${numeric.toFixed(2).replace(/\.?0+$/, '')}px` : value;
+  };
+
+  const measureTypeSpecimen = () => {
+    document.querySelectorAll('[data-type-values]').forEach((values) => {
+      const item = values.closest('.type-specimen__item');
+      const sample = item?.querySelector('.type-specimen__sample');
+      const selector = values.getAttribute('data-measure-selector');
+      const target = selector
+        ? sample?.querySelector(selector)
+        : sample?.firstElementChild;
+
+      if (!(target instanceof HTMLElement)) return;
+
+      const style = window.getComputedStyle(target);
+      const setValue = (name: string, value: string) => {
+        const output = values.querySelector(`[data-type-value="${name}"]`);
+        if (output) output.textContent = value;
+      };
+
+      setValue('size', formatTypeValue(style.fontSize));
+      setValue('leading', formatTypeValue(style.lineHeight));
+      setValue('tracking', formatTypeValue(style.letterSpacing));
+      setValue('alignment', style.textAlign || 'start');
+    });
+  };
+
+  let resizeTimer: number | undefined;
+  const scheduleTypeSpecimenMeasure = () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(measureTypeSpecimen, 120);
+  };
+
+  document.addEventListener('DOMContentLoaded', measureTypeSpecimen);
+  document.addEventListener('astro:page-load', measureTypeSpecimen);
+  window.addEventListener('resize', scheduleTypeSpecimenMeasure, { passive: true });
+</script>
+
+<style>
+  .type-specimen {
+    box-sizing: border-box;
+    width: min(100%, 86rem);
+    margin: 0 auto;
+    padding: clamp(3rem, 5vw, 4.35rem) var(--haggard-page-x) clamp(4rem, 7vw, 7rem);
+  }
+
+  .type-specimen__header {
+    display: grid;
+    gap: 1rem;
+    width: min(100%, 48rem);
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .type-specimen__kicker,
+  .type-specimen__meta dt,
+  .type-specimen__meta dd,
+  .type-specimen__meta p {
+    color: var(--haggard-muted);
+    font-family: "Instrument Sans", sans-serif;
+  }
+
+  .type-specimen__kicker {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .type-specimen__header h1 {
+    max-width: 12em;
+    margin: 0;
+  }
+
+  .type-specimen__header > p:last-child {
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  .type-specimen__list {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .type-specimen__item {
+    display: grid;
+    grid-template-columns: minmax(13rem, 18rem) minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+    padding-top: clamp(1.5rem, 3vw, 2.25rem);
+    border-top: 1px solid var(--haggard-border);
+  }
+
+  .type-specimen__meta {
+    display: grid;
+    gap: 0.95rem;
+  }
+
+  .type-specimen__meta h2 {
+    margin: 0;
+    color: var(--haggard-ink);
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .type-specimen__meta dl {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  .type-specimen__meta dl > div {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .type-specimen__meta dt,
+  .type-specimen__meta dd,
+  .type-specimen__meta p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .type-specimen__meta dt {
+    color: var(--haggard-ink);
+    font-weight: 600;
+  }
+
+  .type-specimen__meta code {
+    color: var(--haggard-muted);
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 0.88rem;
+    white-space: normal;
+  }
+
+  .type-specimen__values {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem 0.8rem !important;
+    padding: 0.82rem 0;
+    border-top: 1px solid color-mix(in srgb, var(--haggard-border) 78%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--haggard-border) 78%, transparent);
+  }
+
+  .type-specimen__values dd {
+    color: var(--haggard-ink);
+  }
+
+  .type-specimen__sample {
+    min-width: 0;
+  }
+
+  .type-specimen__sample :global(.heading-3.topheader.herohero),
+  .type-specimen__sample :global(.site-display-headline),
+  .type-specimen__sample :global(.heading-4),
+  .type-specimen__sample :global(.subline.homesub),
+  .type-specimen__sample :global(.site-body-copy),
+  .type-specimen__sample :global(.paragraph-4),
+  .type-specimen__sample :global(.splitpara),
+  .type-specimen__sample :global(.paragraph-5),
+  .type-specimen__sample :global(.posttext),
+  .type-specimen__sample :global(.posttext h2) {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+
+  .type-specimen__sample :global(.heading-3.topheader.herohero) {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .type-specimen__sample :global(.mainline.smallhomesection),
+  .type-specimen__sample :global(.service-pill-group__title) {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    text-align: center !important;
+  }
+
+  .type-specimen__sample :global(.paragraph-5) {
+    display: block;
+    padding: 0;
+  }
+
+  .type-specimen__sample :global(.ctalink) {
+    width: fit-content;
+  }
+
+  .type-specimen__sample :global(.site-copyright-footer) {
+    display: block;
+    padding: 0;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 767px) {
+    .type-specimen__item {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .type-specimen__header h1 {
+      font-size: clamp(3rem, 12vw, 4.25rem);
+    }
+  }
+</style>
