@@ -109,6 +109,11 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
       'The brand system made benefits communication feel more organized and useful, helping teams move employees from explanation to engagement.',
     items: ['Brand refresh', 'Messaging system', 'Product communication visuals', 'Marketing site direction'],
   },
+  frank: {
+    summary:
+      'The work made an AI financial advisor feel human, direct, and useful, with a brand story designed to pull people out of the traditional advisor relationship.',
+    items: ['Brand positioning', 'Personality and voice system', 'Identity and character direction', 'Product and campaign storytelling'],
+  },
   gameon: {
     summary:
       'The work clarified GameOn’s value for growth and retention leaders, turning fan automation into a more active relationship story.',
