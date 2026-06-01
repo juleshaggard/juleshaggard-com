@@ -42,7 +42,7 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   beautiful: {
     summary:
       'The work reframed speed as executive confidence, giving Beautiful.AI a sharper way to show how teams move from raw thought to persuasive presentation.',
-    items: ['Campaign concept', 'Brand messaging', 'Motion direction', 'Presentation product visuals'],
+    items: ['Brand story concept', 'Brand messaging', 'Motion direction', 'Presentation product visuals'],
   },
   'beckley-retreats': {
     summary:
@@ -57,7 +57,7 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   bizzabo: {
     summary:
       'The engagement clarified Bizzabo as the infrastructure behind connected events, giving marketing leaders a more strategic story than logistics alone.',
-    items: ['Platform positioning', 'Campaign messaging', 'Experience visuals', 'Hybrid event storytelling'],
+    items: ['Platform positioning', 'Brand messaging system', 'Experience visuals', 'Hybrid event storytelling'],
   },
   'brain-drain': {
     summary:
@@ -66,8 +66,8 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   },
   'chase-travel': {
     summary:
-      'The campaign direction made travel planning feel more emotional and active, giving Chase a stronger role in the customer’s trip mindset.',
-    items: ['Campaign concept', 'Art direction', 'Motion assets', 'Travel experience storytelling'],
+      'The brand direction made travel planning feel more emotional and active, giving Chase a stronger role in the customer’s trip mindset.',
+    items: ['Brand story concept', 'Art direction', 'Motion assets', 'Travel experience storytelling'],
   },
   'clarity-rcm': {
     summary:
@@ -102,7 +102,7 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   fender: {
     summary:
       'The work expanded Fender beyond heritage alone, giving the brand a flexible creative-tool story for a wider generation of makers.',
-    items: ['Brand strategy', 'Future-facing identity direction', 'Product ecosystem story', 'Campaign visuals'],
+    items: ['Brand strategy', 'Future-facing identity direction', 'Product ecosystem story', 'Brand expression system'],
   },
   flimp: {
     summary:
@@ -112,7 +112,7 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   gameon: {
     summary:
       'The work clarified GameOn’s value for growth and retention leaders, turning fan automation into a more active relationship story.',
-    items: ['Brand positioning', 'Messaging system', 'Campaign visuals', 'Channel storytelling'],
+    items: ['Brand positioning', 'Messaging system', 'Brand expression visuals', 'Channel storytelling'],
   },
   gitlab: {
     summary:
@@ -152,7 +152,7 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   kinemaster: {
     summary:
       'The work moved Kinemaster beyond editing features and toward a broader creative promise for a global mobile audience.',
-    items: ['Brand positioning', 'Campaign idea', 'Motion assets', 'Creator-focused visual system'],
+    items: ['Brand positioning', 'Brand platform idea', 'Motion assets', 'Creator-focused visual system'],
   },
   lightcone: {
     summary:
@@ -161,8 +161,8 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   },
   liveramp: {
     summary:
-      'The campaign made LiveRamp’s platform breadth easier to understand, centering flexibility while preserving the enterprise promise of control.',
-    items: ['Campaign strategy', 'Platform messaging', 'Visual direction', 'Enterprise marketing assets'],
+      'The brand strategy made LiveRamp’s platform breadth easier to understand, centering flexibility while preserving the enterprise promise of control.',
+    items: ['Brand strategy', 'Platform messaging', 'Visual direction', 'Enterprise brand assets'],
   },
   material: {
     summary:
@@ -236,8 +236,8 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   },
   tripactions: {
     summary:
-      'The campaign gave TripActions a high-visibility travel story that could show up across airports, media, and other decision-making moments.',
-    items: ['Campaign concept', 'Out-of-home system', 'Travel platform messaging', 'Motion and environmental assets'],
+      'The brand platform gave TripActions a high-visibility travel story that could show up across airports, media, and other decision-making moments.',
+    items: ['Brand platform concept', 'Out-of-home identity system', 'Travel platform messaging', 'Motion and environmental assets'],
   },
   vita: {
     summary:
@@ -247,6 +247,6 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   'wish-com': {
     summary:
       'The employer brand turned Wish’s scale and weirdness into a hiring advantage for developers who wanted impact without category blandness.',
-    items: ['Employer brand strategy', 'Recruiting campaign', 'Visual system', 'Developer talent messaging'],
+    items: ['Employer brand strategy', 'Recruiting brand system', 'Visual system', 'Developer talent messaging'],
   },
 };

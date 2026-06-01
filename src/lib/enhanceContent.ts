@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import * as cheerio from 'cheerio';
 import type { CheerioAPI } from 'cheerio';
 import type { AnyNode, Element, Text } from 'domhandler';
@@ -28,6 +30,21 @@ const associateFaces = Array.from({ length: 9 }, (_, index) => {
   };
 });
 
+const homepageFeaturedProjects = [
+  { href: '/projects/arcee-ai', title: 'Arcee.AI' },
+  { href: '/projects/rightcapital', title: 'Right Capital' },
+  { href: '/projects/google-maps-pegman', title: 'Google Maps Pegman' },
+  { href: '/projects/airbnb', title: 'Airbnb' },
+  { href: '/projects/prometheus-group', title: 'Prometheus Group' },
+  { href: '/projects/ibm-watson', title: 'IBM Watson' },
+];
+
+const homepageLeadProject = { href: '/projects/notebook-lm-google', title: 'NotebookLM' };
+
+const knownProjectCardHrefs = new Map([['Prometheus Group', '/projects/prometheus-group']]);
+
+let allWorkDocument: CheerioAPI | null = null;
+
 const attentionEyesSvg = `
 <svg class="attention-eyes" width="136" height="96" viewBox="0 0 136 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <defs>
@@ -48,8 +65,28 @@ const attentionEyesSvg = `
   <path d="M103.403 1C111.731 1 119.398 6.10197 125.028 14.6104C130.652 23.1112 134.164 34.9136 134.164 48C134.164 61.0864 130.652 72.8888 125.028 81.3896C119.398 89.898 111.731 95 103.403 95C95.0741 94.9998 87.4084 89.8979 81.7785 81.3896C76.1536 72.8888 72.6418 61.0864 72.6418 48C72.6418 34.9136 76.1536 23.1112 81.7785 14.6104C87.4084 6.10215 95.0741 1.00018 103.403 1Z" stroke="#D0D0D0" stroke-width="2"/>
 </svg>`;
 
+const bookingCtaIconSvg = `
+<svg class="cta-calendar-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+  <path d="M8 2v4"></path>
+  <path d="M16 2v4"></path>
+  <path d="M3 10h18"></path>
+  <path d="M12 13.5v5.5"></path>
+  <path d="M9.25 16.25h5.5"></path>
+</svg>`;
+
 function cleanText(value: string) {
   return value.replace(/\s+/g, ' ').replace(/\u200d/g, '').trim();
+}
+
+function getAllWorkDocument() {
+  if (!allWorkDocument) {
+    const source = readFileSync(join(process.cwd(), 'src/content-html/pages/all-work.html'), 'utf8');
+    allWorkDocument = cheerio.load(source, {}, false);
+    fixKnownProjectCardHrefs(allWorkDocument);
+  }
+
+  return allWorkDocument;
 }
 
 function isDecorative($: CheerioAPI, element: Element) {
@@ -170,6 +207,18 @@ function enhanceLinks($: CheerioAPI) {
       const cardTitle = closestProjectTitle($, element);
       if (cardTitle) link.attr('aria-label', `View ${cardTitle}`);
     }
+  });
+}
+
+function decorateBookingCtas($: CheerioAPI) {
+  $('a.ctalink').each((_, element) => {
+    const link = $(element);
+    const text = cleanText(link.text()).toLowerCase();
+    const isBookingCta = text === 'book a 15 min call' || text === 'book a 15 minute call';
+
+    if (!isBookingCta || link.find('.cta-calendar-icon').length > 0) return;
+
+    link.prepend(bookingCtaIconSvg);
   });
 }
 
@@ -421,65 +470,93 @@ function replaceAssociateCollage($: CheerioAPI) {
   });
 }
 
-function createPagodaHomepageCard($: CheerioAPI) {
-  const poster = '/assets/site/fa92040502-6269e5f9ec05564399a0d757_App-screen-02_2lighter-poster-00001.webp';
-  const videoSrc = '/assets/site/f4e4e12ee1-6269e5f9ec05564399a0d757_App-screen-02_2lighter-transcode.mp4';
-  const card = $('<a></a>')
-    .addClass('projectblocklink quarter w-inline-block')
-    .attr({
-      'data-tilt': '0',
-      href: '/projects/pagoda',
-    });
-  const media = $('<div></div>')
-    .addClass('projectimg projectvid w-background-video w-background-video-atom')
-    .attr('aria-hidden', 'true');
-  const video = $('<video></video>').attr({
-    autoplay: '',
-    loop: '',
-    muted: '',
-    playsinline: '',
-    preload: 'metadata',
-    tabindex: '-1',
-    'aria-hidden': 'true',
-    disablepictureinpicture: '',
-    poster,
+function projectCardTitle($: CheerioAPI, element: Element) {
+  return cleanText($(element).find('.projecttitle, .projecttitleworkpage').first().text());
+}
+
+function fixKnownProjectCardHrefs($: CheerioAPI) {
+  $('a.projectblocklink').each((_, element) => {
+    const fixedHref = knownProjectCardHrefs.get(projectCardTitle($, element));
+    if (fixedHref) $(element).attr('href', fixedHref);
   });
+}
 
-  video.append($('<source>').attr('src', videoSrc));
-  media.append(video);
-  card.append(media);
-  card.append($('<h2></h2>').addClass('projecttitle').text('Pagoda'));
-  card.append($('<p></p>').addClass('homepageprojects center').text('The first Web3 dev platform'));
+function allWorkProjectCardHtml(href: string, title: string) {
+  const allWork = getAllWorkDocument();
+  let card = allWork(`a.projectblocklink[href="${href}"]`).first();
 
-  return card;
+  if (card.length === 0) {
+    card = allWork('a.projectblocklink')
+      .filter((_, element) => projectCardTitle(allWork, element) === title)
+      .first();
+  }
+
+  if (card.length === 0) return '';
+
+  card.attr('href', href);
+  card.removeClass('xl').addClass('quarter');
+
+  return allWork.html(card) ?? '';
 }
 
 function placeHomepageSmallProjects($: CheerioAPI, options: EnhanceContentOptions) {
   if (options.currentPath !== '/') return;
 
-  const lightcone = $('a.projectblocklink[href="/projects/lightcone"]').first();
-  const pegman = $('a.projectblocklink[href="/projects/google-maps-pegman"]').first();
-  const ibmWatson = $('a.projectblocklink[href="/projects/ibm-watson"]').first();
-  const pagoda = $('a.projectblocklink[href="/projects/pagoda"]').first();
+  const projectGrid = $('.homecontainer > .homepageprojects').first();
   const marketAttention = $('.aboutintro.hp.herohp.lowerdown').not('.testimonials').first();
+  const testimonials = $('.aboutintro.hp.herohp.lowerdown.testimonials').first();
+  const allowedHrefs = new Set([homepageLeadProject.href, ...homepageFeaturedProjects.map((project) => project.href)]);
 
   if (marketAttention.length > 0 && marketAttention.find('.attention-eyes').length === 0) {
     marketAttention.prepend(attentionEyesSvg);
   }
 
-  lightcone.add(pegman).removeClass('xl').addClass('quarter');
+  if (projectGrid.length === 0) return;
 
-  if (ibmWatson.length > 0 && pagoda.length === 0) {
-    ibmWatson.after(createPagodaHomepageCard($));
+  projectGrid.children('a.projectblocklink[href^="/projects/"]').each((_, element) => {
+    const card = $(element);
+    if (!allowedHrefs.has(card.attr('href') ?? '')) card.remove();
+  });
+
+  homepageFeaturedProjects.forEach((project) => {
+    if (projectGrid.children(`a.projectblocklink[href="${project.href}"]`).length > 0) return;
+
+    const cardHtml = allWorkProjectCardHtml(project.href, project.title);
+    if (cardHtml) projectGrid.append(cardHtml);
+  });
+
+  const leadCard = projectGrid.children(`a.projectblocklink[href="${homepageLeadProject.href}"]`).first();
+  if (leadCard.length > 0) {
+    leadCard.removeClass('quarter').addClass('xl');
+    const leadHtml = $.html(leadCard);
+    leadCard.remove();
+    projectGrid.prepend(leadHtml);
   }
 
-  const aboutSection = $('#aboutmesection').first();
-  if (lightcone.length > 0 && aboutSection.length > 0) {
-    aboutSection.after(lightcone);
+  const smallCardHtml = (project: (typeof homepageFeaturedProjects)[number]) => {
+    const card = projectGrid.children(`a.projectblocklink[href="${project.href}"]`).first();
+    if (card.length === 0) return '';
+
+    card.removeClass('xl').addClass('quarter');
+    const html = $.html(card);
+    card.remove();
+
+    return html;
+  };
+
+  const firstRowHtml = homepageFeaturedProjects.slice(0, 3).map(smallCardHtml).join('');
+  const secondRowHtml = homepageFeaturedProjects.slice(3).map(smallCardHtml).join('');
+
+  if (marketAttention.length > 0) {
+    marketAttention.after(firstRowHtml);
+  } else if (firstRowHtml) {
+    projectGrid.append(firstRowHtml);
   }
 
-  if (marketAttention.length > 0 && pegman.length > 0) {
-    pegman.after(marketAttention);
+  if (testimonials.length > 0) {
+    testimonials.before(secondRowHtml);
+  } else if (secondRowHtml) {
+    projectGrid.append(secondRowHtml);
   }
 }
 
@@ -564,15 +641,17 @@ function injectProjectDeliverables($: CheerioAPI, options: EnhanceContentOptions
 export function enhanceContentHtml(html: string, options: EnhanceContentOptions) {
   const $ = cheerio.load(html, {}, false);
 
+  fixKnownProjectCardHrefs($);
+  placeHomepageSmallProjects($, options);
   enhanceHeadings($);
   enhanceImages($, options);
   enhanceVideos($);
   enhanceLinks($);
+  decorateBookingCtas($);
   normalizeBodyCopyParagraphs($);
   stripEmptyNoise($);
   formatServicePills($);
   replaceAssociateCollage($);
-  placeHomepageSmallProjects($, options);
   formatHomepageMarketAttentionCopy($, options);
   markAboutHero($, options);
   injectProjectDeliverables($, options);
