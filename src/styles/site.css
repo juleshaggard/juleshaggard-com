@@ -2554,6 +2554,506 @@ section.footer .splitpara.jhppara.footerrr {
   }
 }
 
+body.ok-bloomer-body {
+  --bg: oklch(98% 0.016 92);
+  --flower-paper: oklch(98% 0.016 92);
+  --flower-cream: oklch(95.5% 0.034 92);
+  --flower-cream-soft: oklch(92.5% 0.035 92);
+  --flower-forest: oklch(27% 0.085 139);
+  --flower-leaf: oklch(45% 0.12 141);
+  --flower-ink: oklch(18% 0.035 130);
+  --flower-muted: oklch(46% 0.038 111);
+  --flower-line: oklch(31% 0.055 132 / 18%);
+  --flower-rose: oklch(72% 0.12 9);
+  --flower-sun: oklch(77% 0.13 75);
+  color: var(--flower-ink);
+  background: var(--flower-paper);
+}
+
+body.ok-bloomer-body main {
+  background: var(--flower-paper);
+}
+
+body.ok-bloomer-body .nav {
+  background: oklch(98% 0.016 92);
+}
+
+body.ok-bloomer-body .site-copyright-footer {
+  background: var(--flower-paper);
+}
+
+.ok-bloomer-page {
+  background: var(--flower-paper);
+  color: var(--flower-ink);
+}
+
+.flower-hero {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(22rem, 1fr);
+  gap: clamp(2.5rem, 5vw, 6rem);
+  align-items: center;
+  min-height: calc(100svh - 5.25rem);
+  padding: clamp(4.8rem, 7vw, 7rem) var(--haggard-page-x);
+  color: var(--flower-cream);
+  background: var(--flower-forest);
+  overflow: hidden;
+}
+
+.flower-hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 46rem;
+  transform: translateY(-4.5rem);
+}
+
+.flower-eyebrow {
+  margin: 0 0 clamp(1rem, 1.8vw, 1.5rem);
+  color: currentColor;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: clamp(0.84rem, 0.9vw, 0.98rem);
+  font-weight: 500;
+  line-height: 1.2;
+  opacity: 0.72;
+}
+
+.flower-hero h1,
+.flower-story h2,
+.flower-gallery h2,
+.flower-support h2,
+.flower-policy h1 {
+  margin: 0;
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  text-wrap: balance;
+}
+
+.flower-hero h1 {
+  max-width: 7.9em;
+  font-size: clamp(3.5rem, 5.8vw, 7rem);
+  line-height: 0.92;
+}
+
+.flower-lede {
+  max-width: 36rem;
+  margin: clamp(1.4rem, 2.2vw, 2rem) 0 0;
+  color: oklch(92% 0.028 92);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: clamp(1.06rem, 1.3vw, 1.28rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.flower-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.15rem;
+  align-items: center;
+  margin-top: clamp(1.2rem, 2vw, 1.8rem);
+}
+
+.flower-button,
+.flower-text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.8rem;
+  color: inherit;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 0.98rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.flower-button {
+  padding: 0.82rem 1.1rem;
+  color: var(--flower-ink);
+  background: var(--flower-cream);
+  border: 1px solid oklch(92% 0.028 92 / 42%);
+  border-radius: 999px;
+  transition:
+    background-color 180ms var(--haggard-fast),
+    transform 180ms var(--haggard-fast);
+}
+
+.flower-button:hover {
+  background: oklch(98% 0.018 92);
+  transform: translateY(-1px);
+}
+
+.flower-text-link {
+  position: relative;
+  font-weight: 500;
+}
+
+.flower-text-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.55rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.44;
+  content: "";
+}
+
+.flower-text-link--dark {
+  color: var(--flower-forest);
+}
+
+.flower-hero__screens {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: min(78svh, 58rem);
+}
+
+.flower-hero__shot {
+  width: min(28vw, 21rem);
+  max-width: none;
+  border-radius: clamp(1.1rem, 2vw, 2rem);
+  box-shadow: 0 24px 70px oklch(12% 0.04 135 / 34%);
+}
+
+.flower-hero__shot--one {
+  position: relative;
+  z-index: 3;
+  width: min(30vw, 22.5rem);
+}
+
+.flower-hero__shot--two,
+.flower-hero__shot--three {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.flower-hero__shot--two {
+  top: 13%;
+  left: 0;
+  transform: rotate(-5deg) translateX(2%);
+}
+
+.flower-hero__shot--three {
+  right: 0;
+  bottom: 9%;
+  transform: rotate(4deg) translateX(-1%);
+}
+
+.flower-story,
+.flower-support {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: start;
+  padding: clamp(5rem, 8vw, 8rem) var(--haggard-page-x);
+}
+
+.flower-story h2,
+.flower-gallery h2,
+.flower-support h2 {
+  max-width: 8.8em;
+  font-size: clamp(3rem, 5.6vw, 6.6rem);
+  line-height: 0.93;
+}
+
+.flower-story__copy {
+  max-width: 45rem;
+  padding-top: clamp(0.1rem, 0.8vw, 0.8rem);
+}
+
+.flower-story__copy p,
+.flower-feature p,
+.flower-gallery__intro p,
+.flower-support__copy p,
+.flower-policy p,
+.flower-policy li {
+  color: var(--flower-muted);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: clamp(1.02rem, 1.2vw, 1.14rem);
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.flower-story__copy p,
+.flower-support__copy p,
+.flower-policy p {
+  margin: 0;
+}
+
+.flower-story__copy p + p,
+.flower-support__copy p + p,
+.flower-policy p + p {
+  margin-top: 1.05rem;
+}
+
+.flower-feature-list {
+  display: grid;
+  width: min(100%, 84rem);
+  margin: 0 auto;
+  padding: 0 var(--haggard-page-x) clamp(5rem, 8vw, 8rem);
+}
+
+.flower-feature {
+  display: grid;
+  grid-template-columns: clamp(3.2rem, 5vw, 5rem) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 3.4rem);
+  padding: clamp(1.45rem, 2.4vw, 2.2rem) 0;
+  border-top: 1px solid var(--flower-line);
+}
+
+.flower-feature:last-child {
+  border-bottom: 1px solid var(--flower-line);
+}
+
+.flower-feature span {
+  color: var(--flower-leaf);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.flower-feature h3 {
+  margin: 0 0 0.5rem;
+  color: var(--flower-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2.15rem, 3.2vw, 3.5rem);
+  font-weight: 400;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.flower-feature p {
+  max-width: 45rem;
+  margin: 0;
+}
+
+.flower-gallery {
+  padding: clamp(4.8rem, 8vw, 8rem) var(--haggard-page-x);
+  color: var(--flower-cream);
+  background: var(--flower-forest);
+}
+
+.flower-gallery__intro {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.85fr) minmax(16rem, 0.55fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: end;
+  margin-bottom: clamp(2.2rem, 4vw, 4rem);
+}
+
+.flower-gallery__intro p {
+  max-width: 28rem;
+  margin: 0;
+  color: oklch(88% 0.032 92);
+}
+
+.flower-gallery__rail {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(1rem, 1.6vw, 1.5rem);
+  align-items: start;
+  overflow-x: visible;
+  padding-bottom: 0.8rem;
+  scrollbar-color: oklch(84% 0.04 92 / 44%) transparent;
+}
+
+.flower-gallery figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.flower-gallery img {
+  display: block;
+  width: 100%;
+  border: 1px solid oklch(92% 0.028 92 / 22%);
+  border-radius: clamp(1rem, 1.4vw, 1.45rem);
+  box-shadow: 0 20px 45px oklch(12% 0.04 135 / 22%);
+}
+
+.flower-gallery figcaption {
+  margin-top: 0.75rem;
+  color: oklch(88% 0.032 92);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 0.96rem;
+  line-height: 1.25;
+}
+
+.flower-support {
+  border-top: 1px solid var(--flower-line);
+}
+
+.flower-support__copy {
+  max-width: 38rem;
+}
+
+.flower-support__copy a:not(.flower-text-link) {
+  color: var(--flower-forest);
+}
+
+.flower-policy {
+  width: min(100%, 58rem);
+  margin: 0 auto;
+  padding: clamp(4rem, 7vw, 6.8rem) var(--haggard-page-x) clamp(5rem, 8vw, 8rem);
+}
+
+.flower-policy__header {
+  margin-bottom: clamp(2.6rem, 4.5vw, 4rem);
+}
+
+.flower-policy h1 {
+  max-width: 9em;
+  color: var(--flower-ink);
+  font-size: clamp(3.2rem, 6.2vw, 7.2rem);
+  line-height: 0.92;
+}
+
+.flower-policy__updated {
+  margin-top: 1.35rem !important;
+  color: var(--flower-leaf) !important;
+  font-weight: 500;
+}
+
+.flower-policy h2 {
+  margin: clamp(2.8rem, 5vw, 4.5rem) 0 1rem;
+  padding-top: clamp(1.2rem, 2vw, 1.7rem);
+  border-top: 1px solid var(--flower-line);
+  color: var(--flower-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2.2rem, 3.6vw, 3.6rem);
+  font-weight: 400;
+  line-height: 0.98;
+}
+
+.flower-policy h3 {
+  margin: clamp(1.55rem, 2.4vw, 2.1rem) 0 0.55rem;
+  color: var(--flower-ink);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: clamp(1.12rem, 1.4vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.flower-policy ul {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.25rem 0 1.15rem;
+  padding-left: 1.2rem;
+}
+
+.flower-policy a {
+  color: var(--flower-forest);
+}
+
+@media screen and (max-width: 1080px) {
+  .flower-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .flower-hero__copy {
+    max-width: 54rem;
+    transform: none;
+  }
+
+  .flower-hero__screens {
+    min-height: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.7rem, 2vw, 1.2rem);
+  }
+
+  .flower-hero__shot,
+  .flower-hero__shot--one,
+  .flower-hero__shot--two,
+  .flower-hero__shot--three {
+    position: static;
+    width: 100%;
+    transform: none;
+  }
+
+  .flower-story,
+  .flower-support,
+  .flower-gallery__intro {
+    grid-template-columns: 1fr;
+  }
+
+  .flower-gallery__intro p {
+    max-width: 42rem;
+  }
+
+  .flower-gallery__rail {
+    grid-template-columns: repeat(6, minmax(11.5rem, 36vw));
+    overflow-x: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .flower-hero {
+    padding-top: clamp(3.25rem, 12vw, 4.25rem);
+    padding-bottom: clamp(3rem, 10vw, 4rem);
+  }
+
+  .flower-hero h1 {
+    font-size: clamp(3.15rem, 14vw, 4.7rem);
+  }
+
+  .flower-hero__screens {
+    display: flex;
+    justify-content: flex-start;
+    margin-right: calc(var(--haggard-page-x) * -1);
+    margin-left: calc(var(--haggard-page-x) * -1);
+    padding: 0 var(--haggard-page-x) 0.8rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .flower-hero__shot,
+  .flower-hero__shot--one,
+  .flower-hero__shot--two,
+  .flower-hero__shot--three {
+    flex: 0 0 min(78vw, 22rem);
+    scroll-snap-align: center;
+  }
+
+  .flower-story,
+  .flower-support,
+  .flower-gallery {
+    padding-top: clamp(3.8rem, 13vw, 5rem);
+    padding-bottom: clamp(3.8rem, 13vw, 5rem);
+  }
+
+  .flower-story h2,
+  .flower-gallery h2,
+  .flower-support h2 {
+    font-size: clamp(2.75rem, 12vw, 4.1rem);
+  }
+
+  .flower-feature-list {
+    padding-bottom: clamp(3.8rem, 13vw, 5rem);
+  }
+
+  .flower-feature {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .flower-feature h3 {
+    font-size: clamp(2rem, 9vw, 2.7rem);
+  }
+
+  .flower-gallery__rail {
+    grid-template-columns: repeat(6, minmax(15.5rem, 72vw));
+    margin-right: calc(var(--haggard-page-x) * -1);
+  }
+
+  .flower-policy {
+    padding-top: clamp(3.5rem, 12vw, 4.5rem);
+  }
+
+  .flower-policy h1 {
+    font-size: clamp(2.85rem, 12vw, 4.25rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .nav {
     transition: none !important;

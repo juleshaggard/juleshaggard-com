@@ -1,0 +1,10 @@
+{
+  "path": "/ok-bloomer/privacy",
+  "sourceUrl": "https://www.haggard.design/ok-bloomer/privacy",
+  "title": "Ok Bloomer Privacy Policy",
+  "description": "Learn how Ok Bloomer collects, uses, and protects app data for flower identification and field journal features.",
+  "bodyClass": "maincontent ok-bloomer-body flower-policy-body",
+  "ogImage": "/assets/ok-bloomer/ok-bloomer-01.png",
+  "htmlFile": "pages/ok-bloomer-privacy.html",
+  "lastMigrated": "2026-06-02T00:00:00.000Z"
+}
