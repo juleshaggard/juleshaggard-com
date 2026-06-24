@@ -226,8 +226,8 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   },
   rightcapital: {
     summary:
-      'The brand made financial planning feel clearer and lighter for advisors and clients, using movement as a signal of progress and confidence.',
-    items: ['Brand refresh', 'Visual system', 'Product storytelling', 'Advisor and client-facing assets'],
+      'The work tied brand and product design together so advisors could move through planning flows, dashboards, and client-facing moments with a clearer sense of progress.',
+    items: ['Brand refresh', 'Product design system', 'Advisor dashboard UI', 'Client planning flows'],
   },
   snow: {
     summary:
