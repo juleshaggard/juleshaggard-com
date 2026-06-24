@@ -61,7 +61,8 @@ function outputFileForRoute(routePath) {
 }
 
 function localFileForUrl(url) {
-  const cleanUrl = stripBasePath(url.split('#')[0].split('?')[0]);
+  const rawUrl = stripBasePath(url.split('#')[0].split('?')[0]);
+  const cleanUrl = decodeUrlPath(rawUrl);
 
   if (cleanUrl === '/' || cleanUrl === '') {
     return outputFileForRoute('/');
@@ -76,6 +77,14 @@ function localFileForUrl(url) {
   }
 
   return outputFileForRoute(cleanUrl);
+}
+
+function decodeUrlPath(url) {
+  try {
+    return decodeURI(url);
+  } catch {
+    return url;
+  }
 }
 
 function stripBasePath(url) {
