@@ -10,14 +10,12 @@ interface Props {
 const { currentPath } = Astro.props;
 
 const navLinks = [
-  { href: '/pricing', label: 'Pricing' },
   { href: '/all-work', label: 'Work' },
-  { href: '/about', label: 'About' },
-  { href: 'mailto:hello@haggard.design', label: 'Contact', ariaLabel: `Email ${siteName}` },
+  { href: '/about', label: 'About/CV' },
+  { href: 'mailto:hello@juleshaggard.com', label: 'Contact', ariaLabel: `Email ${siteName}` },
 ];
 
-const bookingHref = 'https://calendar.app.google/GG164fyHe4HyD5V49';
-const isCurrent = (href: string) => href !== 'mailto:hello@haggard.design' && currentPath === href;
+const isCurrent = (href: string) => !href.startsWith('mailto:') && currentPath === href;
 const hrefFor = (href: string) => withBasePath(href);
 ---
 
@@ -45,15 +43,5 @@ const hrefFor = (href: string) => withBasePath(href);
         </a>
       ))
     }
-    <a class="ctalink nav-cta" href={bookingHref} aria-label={`Book a call with ${siteName}`}>
-      <svg class="nav-cta-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-        <path d="M8 2v4"></path>
-        <path d="M16 2v4"></path>
-        <path d="M3 10h18"></path>
-        <path d="M12 13.5v5.5"></path>
-        <path d="M9.25 16.25h5.5"></path>
-      </svg>
-    </a>
   </div>
 </nav>

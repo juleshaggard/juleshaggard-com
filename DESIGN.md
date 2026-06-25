@@ -1,8 +1,8 @@
-# Haggard Website Design Context
+# Jules Haggard Website Design Context
 
 ## System
 
-The current site is an intentional white editorial portfolio with giant Instrument Serif display typography, Instrument Sans body copy, sparse black CTAs, and large project media. The rebuild should preserve that identity while tightening rhythm, consistency, and motion.
+The current site is an intentional white editorial portfolio with giant Instrument Serif display typography, Instrument Sans body copy, sparse black CTAs, and large project media. This fork should preserve that identity while making Jules the clear first-viewport subject.
 
 ## Typography
 
@@ -29,3 +29,4 @@ The current site is an intentional white editorial portfolio with giant Instrume
 - Preserve the restrained black-on-warm-white system.
 - Use slightly tinted neutrals in new CSS overrides instead of pure black/white when possible.
 - Project imagery carries most of the color.
+- Avoid adding a new decorative palette for the personal fork.

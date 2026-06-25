@@ -524,6 +524,323 @@ a {
   opacity: 1;
 }
 
+.personal-home,
+.personal-about,
+.personal-services {
+  display: block !important;
+  width: 100%;
+  background: #fff;
+}
+
+.personal-home p,
+.personal-about p,
+.personal-services p {
+  text-wrap: pretty;
+}
+
+.personal-eyebrow {
+  margin: 0 0 clamp(0.7rem, 1vw, 1rem) !important;
+  color: var(--haggard-muted) !important;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: clamp(0.82rem, 0.88vw, 0.96rem) !important;
+  font-weight: 600;
+  line-height: 1.2 !important;
+}
+
+.personal-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 0.72fr);
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  align-items: center;
+  width: min(100%, 92rem);
+  min-height: calc(100svh - 7rem);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 4.5rem) var(--haggard-page-x) clamp(3rem, 6vw, 6rem);
+}
+
+.personal-hero .aboutintro.hp.herohp.personal-hero-copy {
+  align-items: flex-start !important;
+  width: 100% !important;
+  max-width: 47rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+.personal-hero .heading-3.topheader.herohero {
+  max-width: 8ch !important;
+  margin-left: 0 !important;
+  font-size: clamp(5.2rem, 9.6vw, 10.5rem) !important;
+  line-height: 0.86 !important;
+  text-align: left !important;
+  white-space: normal !important;
+}
+
+.personal-hero .flex-block-3 {
+  align-items: flex-start !important;
+  width: min(100%, 42rem) !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.personal-hero .splitpara.jhppara {
+  max-width: 40rem !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  font-size: clamp(1.08rem, 1.35vw, 1.38rem) !important;
+  line-height: 1.42 !important;
+  text-align: left !important;
+}
+
+.personal-proof {
+  color: var(--haggard-ink) !important;
+  font-weight: 600;
+}
+
+.personal-hero .flex-block-7 {
+  justify-content: flex-start !important;
+  margin-top: clamp(0.45rem, 1vw, 0.8rem);
+}
+
+.personal-hero-card {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.personal-hero-card .projectimg,
+.personal-feature-grid .projectimg {
+  aspect-ratio: 16 / 11;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+.personal-hero-card .projecttitle {
+  font-size: clamp(3.25rem, 5.6vw, 6.4rem) !important;
+  line-height: 0.92 !important;
+}
+
+.personal-feature-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.4vw, 1.4rem);
+  width: min(100%, 92rem);
+  margin: 0 auto !important;
+  padding: 0 var(--haggard-page-x) clamp(4.5rem, 8vw, 8rem) !important;
+}
+
+.personal-feature-grid .projectblocklink {
+  width: 100% !important;
+  min-width: 0;
+  margin: 0 !important;
+}
+
+.personal-feature-grid .projectblocklink.xl {
+  grid-column: span 2;
+}
+
+.personal-feature-grid .projecttitle {
+  font-size: clamp(2.2rem, 3.4vw, 4.2rem) !important;
+  line-height: 0.96 !important;
+}
+
+.personal-section {
+  display: grid;
+  width: min(100%, 92rem);
+  margin: 0 auto;
+  padding: clamp(4.5rem, 8vw, 8rem) var(--haggard-page-x);
+  border-top: 1px solid var(--haggard-border);
+}
+
+.personal-two-col {
+  grid-template-columns: minmax(16rem, 0.8fr) minmax(18rem, 0.72fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: start;
+}
+
+.personal-section .projecttitle.headertitledesc.lefty.brand-leader.hp {
+  width: auto !important;
+  margin: 0 !important;
+  color: var(--haggard-ink) !important;
+  font-size: clamp(3rem, 5.8vw, 6.6rem) !important;
+  line-height: 0.9 !important;
+  text-align: left !important;
+}
+
+.personal-section .paragraph-3.invert,
+.personal-list .paragraph-3.invert {
+  width: 100% !important;
+  margin: 0 0 clamp(1.15rem, 1.8vw, 1.6rem) !important;
+  color: var(--haggard-muted) !important;
+  font-size: clamp(1.05rem, 1.22vw, 1.24rem) !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+}
+
+.personal-section .paragraph-3.invert strong,
+.personal-list .paragraph-3.invert strong {
+  color: var(--haggard-ink);
+  font-weight: 700;
+}
+
+.personal-meta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+  background: #11100f;
+}
+
+.personal-meta .personal-eyebrow,
+.personal-meta .paragraph-3.invert {
+  color: #f7f2ea !important;
+}
+
+.personal-thinking {
+  width: min(100%, 92rem);
+  margin: 0 auto !important;
+  padding: clamp(4.5rem, 8vw, 8rem) var(--haggard-page-x) !important;
+}
+
+.personal-thinking .flex-block-2 {
+  align-items: flex-start !important;
+}
+
+.personal-thinking .bigthinkspara {
+  width: min(100%, 38rem) !important;
+  margin: 0 0 clamp(2rem, 4vw, 4rem) !important;
+  color: var(--haggard-muted) !important;
+  font-size: clamp(1.1rem, 1.4vw, 1.45rem) !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+.personal-link-list {
+  display: grid;
+  gap: clamp(0.5rem, 1vw, 0.85rem);
+  width: 100%;
+  margin: clamp(1.5rem, 3vw, 3rem) 0 !important;
+  padding: 0 !important;
+}
+
+.personal-link-list .heading-3 {
+  margin: 0 !important;
+  font-size: clamp(2.1rem, 4.4vw, 5.2rem) !important;
+  line-height: 0.96 !important;
+}
+
+.personal-page-hero {
+  display: grid !important;
+  grid-template-columns: minmax(18rem, 0.82fr) minmax(18rem, 0.7fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: end !important;
+  width: min(100%, 92rem) !important;
+  max-width: 92rem !important;
+  padding-top: clamp(4rem, 7vw, 7rem) !important;
+  text-align: left !important;
+}
+
+.personal-page-hero .projecttitle {
+  max-width: 9em !important;
+  text-align: left !important;
+}
+
+.personal-page-hero .flex-block {
+  align-items: flex-start !important;
+  width: 100% !important;
+}
+
+.personal-page-hero .paragraph-4 {
+  color: var(--haggard-muted) !important;
+  font-size: clamp(1.12rem, 1.35vw, 1.36rem) !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+}
+
+.personal-list {
+  display: grid;
+  gap: clamp(0.8rem, 1.5vw, 1.3rem);
+}
+
+.personal-service-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.personal-service-grid .div-block-11 {
+  width: 100% !important;
+  min-height: 100%;
+  margin: 0 !important;
+  padding: clamp(1.35rem, 2.4vw, 2.2rem);
+  background: var(--haggard-soft);
+  border: 1px solid var(--haggard-border);
+  border-radius: 8px;
+}
+
+.personal-service-grid .serviceslist {
+  margin: 0 !important;
+}
+
+.personal-service-grid .boldtextpara {
+  display: block;
+  margin-bottom: clamp(0.8rem, 1.2vw, 1.1rem);
+  color: var(--haggard-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2.6rem, 4.2vw, 4.8rem);
+  line-height: 0.9;
+}
+
+.footer .footerrr {
+  color: var(--haggard-muted) !important;
+}
+
+@media screen and (max-width: 1080px) {
+  .personal-hero,
+  .personal-page-hero,
+  .personal-two-col,
+  .personal-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .personal-hero {
+    min-height: auto;
+  }
+
+  .personal-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .personal-service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .personal-hero,
+  .personal-feature-grid,
+  .personal-section,
+  .personal-thinking,
+  .personal-page-hero {
+    padding-right: var(--haggard-page-x) !important;
+    padding-left: var(--haggard-page-x) !important;
+  }
+
+  .personal-hero .heading-3.topheader.herohero {
+    font-size: clamp(4.2rem, 21vw, 6.2rem) !important;
+  }
+
+  .personal-feature-grid,
+  .personal-feature-grid .projectblocklink.xl {
+    grid-template-columns: 1fr;
+    grid-column: auto;
+  }
+
+  .personal-section .projecttitle.headertitledesc.lefty.brand-leader.hp {
+    font-size: clamp(3rem, 14vw, 4.8rem) !important;
+  }
+
+  .personal-link-list .heading-3 {
+    font-size: clamp(2.25rem, 12vw, 3.7rem) !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .cta-noise-canvas {
     display: none;

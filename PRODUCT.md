@@ -1,4 +1,4 @@
-# Haggard Website Product Context
+# Jules Haggard Website Product Context
 
 ## Register
 
@@ -6,23 +6,23 @@ brand
 
 ## Product Purpose
 
-Haggard & Associates is a senior-led brand and digital design studio site. The site should make strategy feel commercially useful, make the work feel premium and decisive, and help founders, CEOs, CMOs, and senior marketing leaders understand why the studio is worth a serious engagement.
+Juleshaggard.com is a personal portfolio and freelance creative direction site. The site should make Jules feel senior, specific, hireable, and proven across complex product brands.
 
 ## Primary Audience
 
-- CEOs and founders who need their company to look as serious as the product actually is.
-- CMOs and marketing leaders who need sharper positioning, a stronger identity system, and launch-ready assets.
-- Brand-aware operators evaluating whether Haggard can translate complex value into market attention.
+- Founders and marketing leaders who need senior creative direction without a bloated agency model.
+- Product teams that need brand, motion, launch storytelling, or digital systems around complex technology.
+- Creative collaborators evaluating Jules for flagship product, brand, or campaign work.
 
 ## Brand Voice
 
-Direct, senior, opinionated, practical, exacting. The copy should speak in business outcomes and market positioning, not design decoration.
+Direct, senior, personal, practical, exacting. The copy should speak in concrete work, creative direction, and launch value.
 
 ## Strategic Principles
 
-- Positioning before ornament.
+- Jules is the product.
 - Senior thinking should be visible on every page.
-- Case studies should connect creative decisions to business confidence, adoption, launch momentum, category clarity, or market differentiation.
+- Case studies should connect creative decisions to brand clarity, product comprehension, cultural relevance, or launch momentum.
 - The site should feel intentionally sparse, but never unfinished.
 
 ## Anti-References

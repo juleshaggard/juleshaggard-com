@@ -4,7 +4,7 @@ import path from 'node:path';
 import * as cheerio from 'cheerio';
 
 const ROOT = process.cwd();
-const SITE_ORIGIN = 'https://www.haggard.design';
+const SITE_ORIGIN = 'https://www.juleshaggard.com';
 const SITEMAP_URL = `${SITE_ORIGIN}/sitemap.xml`;
 const EXTRA_ROUTES = ['/projects/beats-by-dre'];
 const ASSET_HOSTS = [
@@ -266,7 +266,7 @@ function rewriteElementAssets($) {
 }
 
 function pageMetadata($) {
-  const title = $('title').first().text().trim() || 'Haggard & Associates';
+  const title = $('title').first().text().trim() || 'Jules Haggard';
   const description =
     $('meta[name="description"]').attr('content') ||
     $('meta[property="og:description"]').attr('content') ||

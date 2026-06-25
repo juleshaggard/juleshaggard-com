@@ -1,9 +1,9 @@
 {
   "path": "/projects/beats-by-dre",
-  "sourceUrl": "https://www.haggard.design/projects/beats-by-dre",
-  "title": "Protected project",
-  "description": "A protected Haggard & Associates case study that is intentionally excluded from search indexing.",
-  "bodyClass": "body password",
+  "sourceUrl": "https://www.juleshaggard.com/projects/beats-by-dre",
+  "title": "Beats by Dre",
+  "description": "A Jules Haggard case study for Beats by Dre, focused on a retail compare app and product-facing creative direction.",
+  "bodyClass": "maincontent",
   "htmlFile": "projects/beats-by-dre.html",
   "lastMigrated": "2026-05-28T05:19:48.331Z"
 }

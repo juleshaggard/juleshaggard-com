@@ -23,7 +23,7 @@ interface Props {
 
 const {
   title,
-  description = 'The best design delivers big answers, little by little. By starting with function, I help lead design teams and projects to natural solutions.',
+  description = 'Jules Haggard is a freelance creative director and designer in San Francisco working across brand, digital, motion, and launch systems.',
   bodyClass = '',
   currentPath,
   ogImage = '/assets/social-image.png',
@@ -42,19 +42,20 @@ const metaDescription =
     : `${normalizedDescription.slice(0, 157).replace(/\s+\S*$/, '')}...`;
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': 'Person',
   name: siteName,
   url: absoluteSiteUrl('/', Astro.site ?? new URL(productionOrigin)),
   image: absoluteOgImage,
+  jobTitle: 'Freelance creative director and designer',
+  email: 'mailto:hello@juleshaggard.com',
   description: metaDescription,
-  areaServed: 'Global',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'San Francisco',
     addressRegion: 'CA',
     addressCountry: 'US',
   },
-  sameAs: ['https://www.haggard.design'],
+  sameAs: ['https://www.linkedin.com/in/haggarddesign/'],
 };
 ---
 
@@ -86,15 +87,6 @@ const schema = {
     <link rel="icon" href={withBasePath('/assets/favicon.png')} type="image/png" />
     <link rel="shortcut icon" href={withBasePath('/favicon.ico')} />
     <link rel="apple-touch-icon" href={withBasePath('/assets/site/apple-touch-icon.webp')} />
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-8YHNXLP7D5"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-8YHNXLP7D5');
-    </script>
     <script is:inline>
       document.documentElement.classList.add('motion-ready');
     </script>
@@ -110,20 +102,10 @@ const schema = {
     {
       showCopyrightFooter && (
         <footer class="site-copyright-footer" aria-label="Site copyright">
-          <p>© 2026 Haggard &amp; Associates · San Francisco, California</p>
+          <p>© 2026 Jules Haggard · San Francisco, California</p>
         </footer>
       )
     }
-    <!-- Start of HubSpot Embed Code -->
-    <script
-      type="text/javascript"
-      id="hs-script-loader"
-      is:inline
-      async
-      defer
-      src="//js-na2.hs-scripts.com/246345318.js"
-    ></script>
-    <!-- End of HubSpot Embed Code -->
     <script>
       import '../scripts/site-motion';
     </script>

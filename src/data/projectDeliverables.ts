@@ -36,8 +36,8 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   },
   'beats-by-dre': {
     summary:
-      'The protected work packaged a confidential retail experience into a polished visual system built for clarity, energy, and brand consistency.',
-    items: ['Confidential product visuals', 'Retail experience design', 'Interface direction', 'Presentation assets'],
+      'The work packaged a retail comparison experience into a polished visual system built for clarity, energy, and brand consistency.',
+    items: ['Product visuals', 'Retail experience design', 'Interface direction', 'Presentation assets'],
   },
   beautiful: {
     summary:

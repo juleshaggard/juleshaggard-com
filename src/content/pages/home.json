@@ -1,8 +1,8 @@
 {
   "path": "/",
-  "sourceUrl": "https://www.haggard.design",
-  "title": "Haggard - Brand and digital design in San Francisco",
-  "description": "Haggard & Associates builds brand design systems that make your unique value obvious to the market.",
+  "sourceUrl": "https://www.juleshaggard.com",
+  "title": "Jules Haggard - Freelance creative director and designer",
+  "description": "Jules Haggard is a San Francisco creative director and designer shaping brands, digital products, motion, and launch systems for Google, IBM, Apple, Airbnb, and select startups.",
   "bodyClass": "maincontent",
   "ogImage": "/assets/social-image.png",
   "htmlFile": "pages/home.html",

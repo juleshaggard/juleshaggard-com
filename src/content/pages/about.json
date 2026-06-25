@@ -1,8 +1,8 @@
 {
   "path": "/about",
-  "sourceUrl": "https://www.haggard.design/about",
-  "title": "About",
-  "description": "Meet Haggard & Associates, a San Francisco brand studio focused on practical, purposeful identity systems.",
+  "sourceUrl": "https://www.juleshaggard.com/about",
+  "title": "About/CV",
+  "description": "Meet Jules Haggard, a San Francisco freelance creative director and designer with 20+ years across brand, digital, motion, and launch systems.",
   "bodyClass": "maincontent about-page",
   "ogImage": "/assets/social-image.png",
   "htmlFile": "pages/about.html",

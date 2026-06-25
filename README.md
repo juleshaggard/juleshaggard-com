@@ -1,6 +1,6 @@
-# Haggard Website
+# Jules Haggard Website
 
-Static Astro rebuild of the current `haggard.design` Webflow site.
+Static Astro portfolio for `juleshaggard.com`, forked from the `haggard.design` rebuild.
 
 ## Commands
 
@@ -19,8 +19,8 @@ Static Astro rebuild of the current `haggard.design` Webflow site.
 GitHub Pages is deployed through `.github/workflows/deploy.yml`.
 
 - Pushes to `main` run `check`, `build`, and `verify`, then publish `dist/`.
-- The Astro site is configured for `https://www.haggard.design` and root-relative paths.
-- GitHub Pages is configured for `www.haggard.design`; DNS still needs to point there before the domain resolves to this build.
+- The Astro site is configured for `https://www.juleshaggard.com` and root-relative paths.
+- GitHub Pages is configured for `www.juleshaggard.com`; DNS still needs to point there before the domain resolves to this build.
 
 ## Editing Content
 
@@ -32,7 +32,7 @@ This site uses repo content as the CMS:
 - Self-hosted media lives in `public/assets/site`.
 - Render-time HTML cleanup lives in `src/lib/enhanceContent.ts`; it normalizes headings, media attributes, image alt text, external-link rel attributes, and decorative media.
 - Shared SEO settings live in `src/lib/seo.ts`, with generated `robots.txt` and `sitemap.xml` routes in `src/pages`.
-- The current case-study rewrite lives in `scripts/rewrite-case-studies.mjs`, so Codex can keep the language consistent after future migrations.
+- The current case-study rewrite lives in `scripts/rewrite-case-studies.mjs`, but this fork now carries Jules-focused page and case-study copy directly in the migrated content files.
 - The sentence-case cleanup lives in `scripts/enforce-sentence-case.mjs`; acronyms and initialisms stay capitalized.
 
 The current migration includes all sitemap routes plus `/projects/beats-by-dre`, which is linked publicly but password-protected on the live Webflow site.

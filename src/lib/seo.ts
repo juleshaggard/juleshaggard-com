@@ -1,3 +1,3 @@
-export const siteName = 'Haggard & Associates';
-export const productionOrigin = 'https://www.haggard.design';
-export const noindexPaths = new Set(['/pricing-old-copy', '/projects/beats-by-dre', '/type-specimen']);
+export const siteName = 'Jules Haggard';
+export const productionOrigin = 'https://www.juleshaggard.com';
+export const noindexPaths = new Set(['/pricing', '/pricing-old-copy', '/type-specimen']);

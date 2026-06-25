@@ -1,8 +1,8 @@
 {
   "path": "/services",
-  "sourceUrl": "https://www.haggard.design/services",
+  "sourceUrl": "https://www.juleshaggard.com/services",
   "title": "Services",
-  "description": "Brand positioning, identity systems, digital design, motion, and launch support from Haggard & Associates.",
+  "description": "Freelance creative direction, brand systems, digital design, motion, and launch support from Jules Haggard.",
   "bodyClass": "maincontent",
   "ogImage": "/assets/social-image.png",
   "htmlFile": "pages/services.html",

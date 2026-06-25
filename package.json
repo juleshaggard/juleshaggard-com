@@ -1,7 +1,7 @@
 {
-  "name": "website",
+  "name": "juleshaggard-com",
   "version": "1.0.0",
-  "description": "Static Astro rebuild of haggard.design.",
+  "description": "Personal portfolio for Jules Haggard.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -16,9 +16,9 @@
     "visual": "node scripts/visual-compare.mjs"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jules Haggard",
   "license": "UNLICENSED",
-  "private": true,
+  "private": false,
   "type": "module",
   "dependencies": {
     "@astrojs/check": "^0.9.9",
