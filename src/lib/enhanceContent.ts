@@ -31,15 +31,15 @@ const associateFaces = Array.from({ length: 9 }, (_, index) => {
 });
 
 const homepageFeaturedProjects = [
-  { href: '/projects/arcee-ai', title: 'Arcee.AI' },
-  { href: '/projects/rightcapital', title: 'Right Capital' },
-  { href: '/projects/frank', title: 'Frank' },
-  { href: '/projects/airbnb', title: 'Airbnb' },
-  { href: '/projects/prometheus-group', title: 'Prometheus Group' },
+  { href: '/projects/notebook-lm-google', title: 'NotebookLM' },
   { href: '/projects/ibm-watson', title: 'IBM Watson' },
+  { href: '/projects/beats-by-dre', title: 'Beats by Dre' },
+  { href: '/projects/apple', title: 'Apple' },
+  { href: '/projects/chase-travel', title: 'Chase Travel' },
+  { href: '/projects/fender', title: 'Fender' },
 ];
 
-const homepageLeadProject = { href: '/projects/notebook-lm-google', title: 'NotebookLM' };
+const homepageLeadProject = { href: '/projects/google-maps-pegman', title: 'Google Maps Pegman' };
 
 const knownProjectCardHrefs = new Map([['Prometheus Group', '/projects/prometheus-group']]);
 
@@ -501,6 +501,7 @@ function allWorkProjectCardHtml(href: string, title: string) {
 
 function placeHomepageSmallProjects($: CheerioAPI, options: EnhanceContentOptions) {
   if (options.currentPath !== '/') return;
+  if ($('.homecontainer.personal-home-compact').length > 0) return;
 
   const projectGrid = $('.homecontainer > .homepageprojects').first();
   const marketAttention = $('.aboutintro.hp.herohp.lowerdown').not('.testimonials').first();

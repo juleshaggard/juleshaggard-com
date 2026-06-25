@@ -3093,6 +3093,153 @@ section.footer .splitpara.jhppara.footerrr {
   }
 }
 
+.personal-home-compact .personal-hero {
+  min-height: auto;
+  padding-top: clamp(2.5rem, 5vw, 5rem);
+  padding-bottom: clamp(2.25rem, 5vw, 5rem);
+}
+
+.personal-home-compact .personal-hero .heading-3.topheader.herohero {
+  line-height: 0.92 !important;
+}
+
+.personal-home-compact .personal-hero .splitpara.jhppara {
+  max-width: 37rem !important;
+}
+
+.personal-home-compact .personal-secondary-cta {
+  color: var(--haggard-ink) !important;
+  background: oklch(98% 0.006 75) !important;
+  border-color: var(--haggard-ink) !important;
+}
+
+.personal-home-compact .personal-secondary-cta:hover,
+.personal-home-compact .personal-secondary-cta:focus-visible {
+  color: oklch(98% 0.006 75) !important;
+  background: var(--haggard-ink) !important;
+}
+
+.personal-feature-grid--compact {
+  padding-bottom: clamp(3.25rem, 6vw, 6rem) !important;
+}
+
+.personal-feature-grid--compact .projectblocklink.xl {
+  grid-column: span 2;
+}
+
+.personal-hire {
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(18rem, 0.82fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: start;
+}
+
+.personal-hire h2 {
+  max-width: 8.5em;
+  margin: 0;
+  color: var(--haggard-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(3.6rem, 6.8vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.personal-hire-list {
+  display: grid;
+  gap: clamp(1rem, 1.7vw, 1.45rem);
+  border-top: 1px solid var(--haggard-border);
+}
+
+.personal-hire-list p {
+  margin: 0;
+  padding-top: clamp(1rem, 1.5vw, 1.35rem);
+  color: var(--haggard-muted);
+  font-size: clamp(1.05rem, 1.2vw, 1.22rem);
+  line-height: 1.5;
+  border-top: 1px solid var(--haggard-border);
+}
+
+.personal-hire-list p:first-child {
+  border-top: 0;
+}
+
+.personal-hire-list strong {
+  color: var(--haggard-ink);
+  font-weight: 600;
+}
+
+.personal-home-footer {
+  display: grid;
+  gap: clamp(1.25rem, 2vw, 2rem);
+  justify-items: center;
+  width: min(100%, 92rem);
+  margin: 0 auto;
+  padding: clamp(3.25rem, 6vw, 6rem) var(--haggard-page-x) clamp(1.25rem, 2vw, 2rem);
+  border-top: 1px solid var(--haggard-border);
+}
+
+.personal-home-footer .mainline.inver.rightsidecontact.contact {
+  width: min(100%, 28rem);
+}
+
+.homecontainer .projectblocklink > .projecttitle,
+.homecontainer .projectblocklink > .projecttitleworkpage {
+  display: block;
+  min-height: auto !important;
+  margin: clamp(0.75rem, 1vw, 1rem) 0 clamp(0.5rem, 0.8vw, 0.75rem) !important;
+  padding: 0 !important;
+  line-height: 1.05 !important;
+  overflow-wrap: anywhere;
+}
+
+.homecontainer .projectblocklink > .homepageprojects.center {
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: clamp(0.9rem, 0.95vw, 1rem) !important;
+  line-height: 1.38 !important;
+  text-align: center;
+}
+
+.homecontainer .projectblocklink > img.projectimg,
+.homecontainer .projectblocklink > .projectimg.projectvid,
+.homecontainer .projectblocklink > .w-background-video.projectimg {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 16 / 9;
+  object-fit: cover !important;
+  object-position: center;
+}
+
+.homecontainer .projectblocklink video,
+.homecontainer .projectblocklink .w-background-video > video {
+  object-fit: cover !important;
+  object-position: center;
+}
+
+@media screen and (max-width: 1080px) {
+  .personal-hire {
+    grid-template-columns: 1fr;
+  }
+
+  .personal-feature-grid--compact,
+  .personal-feature-grid--compact .projectblocklink.xl {
+    grid-column: auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .personal-home-compact .personal-hero {
+    padding-top: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  .personal-hire h2 {
+    font-size: clamp(3rem, 13vw, 4.7rem);
+  }
+}
+
 body.ok-bloomer-body {
   --bg: oklch(98% 0.016 92);
   --flower-paper: oklch(98% 0.016 92);
