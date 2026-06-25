@@ -23,10 +23,13 @@
 html,
 body {
   overflow-x: clip !important;
+  overflow-y: auto;
 }
 
 html {
   background: #fff;
+  min-height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -44,7 +47,7 @@ html:has(body.writingbody) {
 
 body.writingbody {
   overflow-x: clip !important;
-  overflow-y: clip !important;
+  overflow-y: visible !important;
 }
 
 body.writingbody main,
@@ -72,6 +75,11 @@ img {
 
 main:focus {
   outline: none;
+}
+
+main {
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 ::view-transition-old(root),
@@ -530,6 +538,8 @@ a {
   display: block !important;
   width: 100%;
   background: #fff;
+  overflow: visible !important;
+  contain: none;
 }
 
 .personal-home p,
@@ -643,12 +653,42 @@ a {
   line-height: 0.96 !important;
 }
 
+.personal-kicker {
+  max-width: 9.4em;
+  margin: 0 !important;
+  color: var(--haggard-ink) !important;
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(4.4rem, 9.2vw, 11rem) !important;
+  font-weight: 400;
+  line-height: 0.86 !important;
+  text-wrap: balance;
+}
+
+.personal-statement-copy {
+  max-width: 36rem;
+}
+
 .personal-section {
   display: grid;
   width: min(100%, 92rem);
   margin: 0 auto;
   padding: clamp(4.5rem, 8vw, 8rem) var(--haggard-page-x);
   border-top: 1px solid var(--haggard-border);
+}
+
+.personal-section.personal-statement {
+  grid-template-columns: minmax(18rem, 0.95fr) minmax(18rem, 0.62fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: end;
+  padding-top: clamp(3.5rem, 7vw, 7rem);
+  padding-bottom: clamp(4rem, 7vw, 7rem);
+  border-top: 0;
+}
+
+.personal-section-intro {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.8rem);
+  align-content: start;
 }
 
 .personal-two-col {
@@ -682,6 +722,129 @@ a {
   font-weight: 700;
 }
 
+.personal-difference {
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(22rem, 1fr);
+  gap: clamp(2.5rem, 7vw, 8rem);
+}
+
+.personal-difference-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--haggard-border);
+}
+
+.personal-difference-list article {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 0.54fr) minmax(0, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: start;
+  padding: clamp(1.2rem, 2.1vw, 2rem) 0;
+  border-bottom: 1px solid var(--haggard-border);
+}
+
+.personal-difference-list span {
+  color: var(--haggard-muted);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.personal-difference-list h3,
+.personal-mode-list h3 {
+  margin: 0;
+  color: var(--haggard-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2.15rem, 3.3vw, 4.1rem);
+  font-weight: 400;
+  line-height: 0.92;
+}
+
+.personal-difference-list p,
+.personal-mode-list p,
+.personal-proof-columns p,
+.personal-client-memory p {
+  margin: 0;
+  color: var(--haggard-muted);
+  font-size: clamp(1rem, 1.12vw, 1.18rem);
+  line-height: 1.5;
+}
+
+.personal-work-modes {
+  grid-template-columns: minmax(20rem, 1fr) minmax(19rem, 0.9fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: start;
+}
+
+.personal-mode-large {
+  position: sticky;
+  top: clamp(6.5rem, 9vw, 9rem);
+}
+
+.personal-mode-large h2 {
+  max-width: 9.2em;
+  margin: 0;
+  color: var(--haggard-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(3.8rem, 7.2vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.personal-mode-list {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.personal-mode-list article {
+  padding-top: clamp(1.15rem, 2vw, 1.8rem);
+  border-top: 1px solid var(--haggard-border);
+}
+
+.personal-mode-list h3 {
+  margin-bottom: clamp(0.65rem, 1vw, 0.95rem);
+}
+
+.personal-proof-strip {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.personal-proof-columns {
+  display: grid;
+  grid-template-columns: 1.15fr 0.9fr 0.9fr;
+  gap: clamp(1rem, 2vw, 2.2rem);
+}
+
+.personal-proof-columns a {
+  display: grid;
+  min-height: clamp(15rem, 22vw, 22rem);
+  align-content: space-between;
+  padding: clamp(1.25rem, 2.2vw, 2rem);
+  color: inherit;
+  background: var(--haggard-soft);
+  border: 1px solid var(--haggard-border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition:
+    background-color 180ms var(--haggard-fast),
+    transform 180ms var(--haggard-fast);
+}
+
+.personal-proof-columns a:hover,
+.personal-proof-columns a:focus-visible {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.personal-proof-columns span {
+  color: var(--haggard-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(2.55rem, 4vw, 5rem);
+  line-height: 0.9;
+}
+
 .personal-meta {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.5rem, 4vw, 4rem);
@@ -691,6 +854,28 @@ a {
 .personal-meta .personal-eyebrow,
 .personal-meta .paragraph-3.invert {
   color: #f7f2ea !important;
+}
+
+.personal-client-memory {
+  grid-template-columns: minmax(18rem, 0.85fr) minmax(18rem, 0.72fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: start;
+}
+
+.personal-client-memory h2 {
+  max-width: 9em;
+  margin: 0;
+  color: var(--haggard-ink);
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(4rem, 7vw, 8rem);
+  font-weight: 400;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.personal-client-memory div {
+  display: grid;
+  gap: clamp(1rem, 1.6vw, 1.35rem);
 }
 
 .personal-thinking {
@@ -795,7 +980,11 @@ a {
   .personal-hero,
   .personal-page-hero,
   .personal-two-col,
-  .personal-meta {
+  .personal-meta,
+  .personal-statement,
+  .personal-difference,
+  .personal-work-modes,
+  .personal-client-memory {
     grid-template-columns: 1fr;
   }
 
@@ -810,6 +999,22 @@ a {
   .personal-service-grid {
     grid-template-columns: 1fr;
   }
+
+  .personal-mode-large {
+    position: static;
+  }
+
+  .personal-difference-list article {
+    grid-template-columns: 3rem minmax(0, 1fr);
+  }
+
+  .personal-difference-list article p {
+    grid-column: 2;
+  }
+
+  .personal-proof-columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -817,7 +1022,8 @@ a {
   .personal-feature-grid,
   .personal-section,
   .personal-thinking,
-  .personal-page-hero {
+  .personal-page-hero,
+  .personal-statement {
     padding-right: var(--haggard-page-x) !important;
     padding-left: var(--haggard-page-x) !important;
   }
@@ -834,6 +1040,21 @@ a {
 
   .personal-section .projecttitle.headertitledesc.lefty.brand-leader.hp {
     font-size: clamp(3rem, 14vw, 4.8rem) !important;
+  }
+
+  .personal-kicker,
+  .personal-mode-large h2,
+  .personal-client-memory h2 {
+    font-size: clamp(3.7rem, 16vw, 5.2rem) !important;
+  }
+
+  .personal-difference-list article {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .personal-difference-list article p {
+    grid-column: auto;
   }
 
   .personal-link-list .heading-3 {
@@ -1385,7 +1606,8 @@ a {
 }
 
 body.maincontent main:has(.bigthinks) {
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .bigthinks .splitpara.bigthinkspara {
