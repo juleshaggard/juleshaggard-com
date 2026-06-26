@@ -3236,12 +3236,15 @@ section.footer .splitpara.jhppara.footerrr {
 
 .agency-pattern-home {
   background: #fff;
+  overflow-x: clip !important;
 }
 
 .agency-pattern-hero {
   grid-template-columns: 1fr !important;
   justify-items: center;
   width: min(100%, 96rem);
+  max-width: 100%;
+  box-sizing: border-box;
   padding-top: clamp(3.75rem, 8vw, 7rem);
   padding-bottom: clamp(2rem, 5vw, 4rem);
   text-align: center;
@@ -3250,18 +3253,22 @@ section.footer .splitpara.jhppara.footerrr {
 .agency-pattern-hero .agency-pattern-copy {
   align-items: center !important;
   max-width: 100% !important;
+  min-width: 0;
   text-align: center !important;
 }
 
 .agency-pattern-hero .flex-block-3 {
   align-items: center !important;
   width: min(100%, 90rem) !important;
+  max-width: 100% !important;
+  min-width: 0;
   text-align: center !important;
 }
 
 .agency-pattern-hero .splitpara.jhppara {
   max-width: 52rem !important;
   text-align: center !important;
+  overflow-wrap: break-word;
 }
 
 .agency-pattern-hero .flex-block-7 {
@@ -3374,6 +3381,7 @@ section.footer .splitpara.jhppara.footerrr {
 .agency-pattern-section {
   grid-template-columns: minmax(18rem, 0.78fr) minmax(18rem, 0.82fr);
   gap: clamp(2rem, 6vw, 7rem);
+  min-width: 0;
 }
 
 .agency-pattern-home .personal-section,
@@ -3386,12 +3394,17 @@ section.footer .splitpara.jhppara.footerrr {
 .agency-pattern-closing h2 {
   max-width: 8.5em;
   font-size: clamp(3.6rem, 6.8vw, 7.5rem);
+  overflow-wrap: break-word;
 }
 
 .agency-pattern-section-body {
   display: grid;
   gap: clamp(1.35rem, 2.4vw, 2.3rem);
   align-content: start;
+}
+
+.agency-pattern-body-eyebrow {
+  margin: clamp(0.15rem, 0.8vw, 0.45rem) 0 0 !important;
 }
 
 .agency-pattern-list {
@@ -3422,17 +3435,18 @@ section.footer .splitpara.jhppara.footerrr {
 
 .agency-pattern-capabilities .agency-pattern-list li {
   display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  min-height: 2.45rem;
-  padding: clamp(0.55rem, 0.75vw, 0.72rem) clamp(0.82rem, 1vw, 1rem) clamp(0.58rem, 0.8vw, 0.74rem) clamp(0.68rem, 0.9vw, 0.86rem);
+  flex: 1 1 min(100%, 16rem);
+  align-items: flex-start;
+  gap: 0.62rem;
+  min-height: 5.2rem;
+  padding: clamp(0.72rem, 1vw, 0.95rem) clamp(0.88rem, 1.15vw, 1.08rem) clamp(0.78rem, 1.1vw, 1rem) clamp(0.72rem, 0.95vw, 0.9rem);
   color: oklch(19% 0.01 75);
-  font-size: clamp(0.92rem, 1vw, 1.04rem);
+  font-size: clamp(0.9rem, 0.95vw, 1rem);
   font-weight: 650;
-  line-height: 1.08;
+  line-height: 1.12;
   background: oklch(97.5% 0.006 75);
   border: 1px solid oklch(72% 0.014 75 / 52%);
-  border-radius: 999px;
+  border-radius: 1.35rem;
 }
 
 .agency-pattern-capabilities .agency-pattern-list li::before {
@@ -3441,6 +3455,7 @@ section.footer .splitpara.jhppara.footerrr {
   flex: 0 0 1.05rem;
   width: 1.05rem;
   height: 1.05rem;
+  margin-top: 0.08rem;
   place-items: center;
   color: oklch(98% 0.006 75);
   font-size: 0.66rem;
@@ -3448,6 +3463,26 @@ section.footer .splitpara.jhppara.footerrr {
   line-height: 1;
   background: var(--haggard-ink);
   border-radius: 50%;
+}
+
+.agency-pattern-capabilities .agency-pattern-list strong,
+.agency-pattern-capabilities .agency-pattern-list span {
+  display: block;
+}
+
+.agency-pattern-capabilities .agency-pattern-list strong {
+  margin-bottom: 0.28rem;
+  font-size: clamp(0.94rem, 1vw, 1.08rem);
+  font-weight: 700;
+  line-height: 1.06;
+}
+
+.agency-pattern-capabilities .agency-pattern-list span {
+  max-width: 28ch;
+  color: oklch(38% 0.012 75);
+  font-size: clamp(0.78rem, 0.86vw, 0.9rem);
+  font-weight: 450;
+  line-height: 1.24;
 }
 
 .agency-pattern-text-link {
@@ -3545,8 +3580,30 @@ section.footer .splitpara.jhppara.footerrr {
 }
 
 @media screen and (max-width: 767px) {
+  .agency-pattern-home {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden !important;
+  }
+
   .personal-home-compact .personal-hero {
     padding-top: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  .agency-pattern-hero {
+    width: 100% !important;
+    max-width: 100vw !important;
+    padding-right: var(--haggard-page-x) !important;
+    padding-left: var(--haggard-page-x) !important;
+    overflow: hidden;
+  }
+
+  .agency-pattern-hero .agency-pattern-copy,
+  .agency-pattern-hero .flex-block-3,
+  .agency-pattern-hero .splitpara.jhppara {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
   }
 
   .personal-hire h2 {
@@ -3554,8 +3611,9 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   .agency-pattern-hero .heading-3.topheader.herohero.agency-pattern-title {
-    max-width: 8.2ch !important;
+    max-width: min(100%, 8.2ch) !important;
     font-size: clamp(3rem, 11vw, 4.1rem) !important;
+    line-height: 1.04 !important;
     white-space: normal !important;
   }
 
@@ -3567,7 +3625,18 @@ section.footer .splitpara.jhppara.footerrr {
   .agency-pattern-section h2,
   .agency-pattern-closing h2,
   .agency-pattern-selected-header h2 {
-    font-size: clamp(3rem, 13vw, 4.7rem);
+    max-width: 100%;
+    font-size: clamp(2.75rem, 11.8vw, 4.25rem);
+    line-height: 1.03;
+    overflow-wrap: anywhere;
+  }
+
+  .agency-pattern-section,
+  .agency-pattern-selected-work,
+  .agency-pattern-closing {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   .agency-pattern-reason-list {
@@ -3579,8 +3648,9 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   .agency-pattern-capabilities .agency-pattern-list li {
-    min-height: 2.25rem;
-    padding: 0.48rem 0.7rem 0.5rem 0.58rem;
+    flex-basis: 100%;
+    min-height: auto;
+    padding: 0.68rem 0.78rem 0.74rem 0.64rem;
     font-size: 0.84rem;
   }
 

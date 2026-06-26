@@ -1,8 +1,8 @@
 {
   "path": "/",
   "sourceUrl": "https://www.juleshaggard.com",
-  "title": "Jules Haggard - A creative director that ships",
-  "description": "Jules Haggard helps agencies build brands, products, AI-ready design systems, WebGL experiences, motion, and production-ready front-end.",
+  "title": "Jules Haggard - A creative director for the AI era",
+  "description": "Jules Haggard helps agencies build brands, products, AI-native design systems, WebGL experiences, and production-ready front-end.",
   "bodyClass": "maincontent",
   "ogImage": "/assets/social-image.png",
   "htmlFile": "pages/home.html",
