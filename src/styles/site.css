@@ -2105,6 +2105,30 @@ section.footer .splitpara.jhppara.footerrr {
   text-wrap: pretty;
 }
 
+.splitpara,
+.splitpara strong,
+.paragraph-3,
+.paragraph-3 strong,
+.paragraph-4,
+.paragraph-4 strong,
+.paragraph-5,
+.paragraph-5 strong,
+.posttext p,
+.posttext p strong,
+.posttext li,
+.posttext li strong,
+.homepageprojects.center,
+.deliverables-recap__summary,
+.deliverables-recap__summary strong,
+.deliverables-recap__list,
+.deliverables-recap__list li,
+.personal-about-bullets li,
+.agency-pattern-capabilities .agency-pattern-list span,
+.agency-pattern-reason-list li,
+.agency-pattern-closing-copy p {
+  color: var(--haggard-muted) !important;
+}
+
 .splitpara:not(.serviceslist) br + br,
 .paragraph-3:not(.serviceslist) br + br,
 .paragraph-4 br + br,
@@ -2915,7 +2939,7 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   .heading-3.topheader.herohero {
-    max-width: 6.25em;
+    max-width: min(100%, 22rem);
     font-size: clamp(3.05rem, 13vw, 3.55rem) !important;
   }
 
@@ -2947,6 +2971,16 @@ section.footer .splitpara.jhppara.footerrr {
   .ctalink {
     min-height: 3rem;
     padding: 0.82rem 1.3rem 0.82rem 1.4rem !important;
+  }
+
+  .agency-pattern-hero .heading-3.topheader.herohero.agency-pattern-title {
+    max-width: min(100%, 22rem) !important;
+    font-size: clamp(2.55rem, 10.4vw, 3.45rem) !important;
+  }
+
+  .agency-pattern-hero .flex-block-7 .ctalink {
+    width: min(80vw, 20rem) !important;
+    justify-content: center !important;
   }
 
   .nav-cta {
@@ -3856,10 +3890,15 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   .agency-pattern-hero .heading-3.topheader.herohero.agency-pattern-title {
-    max-width: min(100%, 8.2ch) !important;
-    font-size: clamp(3rem, 11vw, 4.1rem) !important;
+    max-width: min(100%, 22rem) !important;
+    font-size: clamp(2.65rem, 10.4vw, 4.1rem) !important;
     line-height: 1.04 !important;
     white-space: normal !important;
+  }
+
+  .agency-pattern-hero .flex-block-7 .ctalink {
+    width: min(80vw, 20rem) !important;
+    justify-content: center !important;
   }
 
   .agency-pattern-logo-band {
@@ -3887,6 +3926,16 @@ section.footer .splitpara.jhppara.footerrr {
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
+  }
+
+  .agency-pattern-closing {
+    overflow: visible !important;
+    padding-bottom: clamp(2.75rem, 9vw, 4rem);
+  }
+
+  .agency-pattern-closing-copy {
+    overflow: visible;
+    padding-bottom: clamp(0.9rem, 4vw, 1.4rem);
   }
 
   .agency-anthem-section {
