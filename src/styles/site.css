@@ -2979,7 +2979,7 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   .agency-pattern-hero .flex-block-7 .ctalink {
-    width: min(80vw, 20rem) !important;
+    width: min(76vw, 19rem) !important;
     justify-content: center !important;
   }
 
@@ -3478,7 +3478,7 @@ section.footer .splitpara.jhppara.footerrr {
   margin: 0;
   padding: 0;
   list-style: none;
-  animation: agency-logo-marquee 34s linear infinite;
+  animation: agency-logo-marquee 92s linear infinite;
   will-change: transform;
 }
 
@@ -3492,35 +3492,55 @@ section.footer .splitpara.jhppara.footerrr {
 
 .agency-pattern-marquee-group img {
   display: block;
-  width: min(100%, 4.6rem);
-  max-height: 1.55rem;
+  width: min(100%, 4.25rem);
+  max-height: 1.42rem;
   object-fit: contain;
-  filter: grayscale(1) contrast(1.05);
-  opacity: 0.78;
+  filter: brightness(0) saturate(100%) invert(37%) sepia(8%) saturate(284%) hue-rotate(349deg) brightness(93%) contrast(88%);
+  opacity: 1;
+}
+
+.agency-pattern-marquee-group img[src*="google"] {
+  width: min(100%, 5.35rem);
+  max-height: 1.6rem;
+}
+
+.agency-pattern-marquee-group img[src*="nike"] {
+  width: min(100%, 6.75rem);
+  max-height: 2.35rem;
+}
+
+.agency-pattern-marquee-group img[src*="ibm"] {
+  width: min(100%, 4.95rem);
+  max-height: 1.72rem;
 }
 
 .agency-pattern-marquee-group img[src*="fender"] {
-  width: min(100%, 5.2rem);
-  max-height: 1.95rem;
+  width: min(100%, 3.75rem);
+  max-height: 1.32rem;
 }
 
 .agency-pattern-marquee-group img[src*="citi-bank"] {
-  max-height: 1.25rem;
+  max-height: 1.12rem;
 }
 
 .agency-pattern-marquee-group img[src*="liveramp"],
 .agency-pattern-marquee-group img[src*="adult-swim"] {
-  width: min(100%, 5.35rem);
-  max-height: 1.35rem;
+  width: min(100%, 5.05rem);
+  max-height: 1.22rem;
+}
+
+.agency-pattern-marquee-group img[src*="apple"] {
+  width: min(100%, 1.82rem);
+  max-height: 1.82rem;
 }
 
 .agency-pattern-marquee-group img[src*="microsoft"],
-.agency-pattern-marquee-group img[src*="apple"],
 .agency-pattern-marquee-group img[src*="square"],
-.agency-pattern-marquee-group img[src*="chase-bank"],
-.agency-pattern-marquee-group img[src*="autodesk"] {
-  width: min(100%, 2rem);
-  max-height: 2rem;
+.agency-pattern-marquee-group img[src*="linkedin"],
+.agency-pattern-marquee-group img[src*="stripe"],
+.agency-pattern-marquee-group img[src*="chase-bank"] {
+  width: min(100%, 1.32rem);
+  max-height: 1.32rem;
 }
 
 @keyframes agency-logo-marquee {
@@ -3898,7 +3918,7 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   .agency-pattern-hero .flex-block-7 .ctalink {
-    width: min(80vw, 20rem) !important;
+    width: min(76vw, 19rem) !important;
     justify-content: center !important;
   }
 
