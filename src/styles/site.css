@@ -1036,17 +1036,37 @@ a {
   justify-items: center;
   width: min(100%, 78rem);
   padding-top: clamp(3.5rem, 7vw, 7rem);
+  padding-bottom: clamp(4rem, 7vw, 7rem);
   text-align: center;
   border-top: 0;
 }
 
-.personal-about-final .paragraph-3.invert {
-  max-width: 50rem;
-  margin-bottom: clamp(1.5rem, 2.5vw, 2.4rem) !important;
-  color: var(--haggard-ink) !important;
-  font-size: clamp(1.2rem, 1.65vw, 1.65rem) !important;
-  line-height: 1.42 !important;
+.personal-about-final-copy {
+  display: grid;
+  justify-items: center;
+  max-width: min(100%, 56rem);
+  gap: clamp(1.1rem, 2vw, 1.8rem);
+  text-align: center;
+}
+
+.personal-about-final .projecttitle.headertitledesc.lefty.brand-leader.hp {
+  justify-self: center;
+  max-width: 8.8em;
+  margin: 0 !important;
   text-align: center !important;
+}
+
+.personal-about-final .paragraph-3.invert {
+  max-width: 48rem;
+  margin: 0 !important;
+  color: var(--haggard-muted) !important;
+  font-size: clamp(1.05rem, 1.22vw, 1.24rem) !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+}
+
+.personal-about-final .ctalink {
+  width: min(100%, 32rem);
 }
 
 .personal-service-grid {
@@ -3250,7 +3270,7 @@ section.footer .splitpara.jhppara.footerrr {
 }
 
 .personal-home-compact .agency-pattern-hero .splitpara.jhppara {
-  max-width: min(100%, 72rem) !important;
+  max-width: min(100%, 46rem) !important;
 }
 
 .personal-home-compact .agency-pattern-hero {
@@ -3278,6 +3298,16 @@ section.footer .splitpara.jhppara.footerrr {
 .personal-home-compact .personal-secondary-cta:focus-visible {
   color: oklch(98% 0.006 75) !important;
   background: var(--haggard-ink) !important;
+}
+
+.agency-pattern-availability {
+  margin: clamp(0.15rem, 0.6vw, 0.45rem) 0 0;
+  color: var(--haggard-muted);
+  font-family: "Instrument Sans", sans-serif;
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  font-weight: 450;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .personal-feature-grid--compact {
