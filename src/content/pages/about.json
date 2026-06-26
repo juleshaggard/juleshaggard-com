@@ -1,8 +1,8 @@
 {
   "path": "/about",
   "sourceUrl": "https://www.juleshaggard.com/about",
-  "title": "About/CV",
-  "description": "Meet Jules Haggard, a San Francisco freelance creative director and designer with 20+ years across brand, digital, motion, and launch systems.",
+  "title": "About",
+  "description": "About Jules Haggard, a freelance creative director helping ambitious teams build brands, products, digital experiences, and systems they are proud to ship.",
   "bodyClass": "maincontent about-page",
   "ogImage": "/assets/social-image.png",
   "htmlFile": "pages/about.html",

@@ -11,12 +11,19 @@ const { currentPath } = Astro.props;
 
 const navLinks = [
   { href: '/all-work', label: 'Work' },
-  { href: '/about', label: 'About/CV' },
+  { href: '/about', label: 'About' },
+  {
+    href: 'https://www.linkedin.com/feed/',
+    label: 'LinkedIn',
+    ariaLabel: 'Jules Haggard on LinkedIn',
+    external: true,
+  },
   { href: 'mailto:hello@juleshaggard.com', label: 'Contact', ariaLabel: `Email ${siteName}` },
 ];
 
-const isCurrent = (href: string) => !href.startsWith('mailto:') && currentPath === href;
-const hrefFor = (href: string) => withBasePath(href);
+const isExternal = (href: string) => /^https?:\/\//.test(href);
+const isCurrent = (href: string) => !href.startsWith('mailto:') && !isExternal(href) && currentPath === href;
+const hrefFor = (href: string) => (href.startsWith('mailto:') || isExternal(href) ? href : withBasePath(href));
 ---
 
 <nav class="nav" aria-label="Primary">
@@ -38,6 +45,8 @@ const hrefFor = (href: string) => withBasePath(href);
           class:list={['navlink', { 'w--current': isCurrent(link.href) }]}
           aria-current={isCurrent(link.href) ? 'page' : undefined}
           aria-label={link.ariaLabel}
+          target={link.external ? '_blank' : undefined}
+          rel={link.external ? 'noopener noreferrer' : undefined}
         >
           <span class="navlink-label">{link.label}</span>
         </a>

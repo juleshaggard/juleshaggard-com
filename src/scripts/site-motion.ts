@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initCtaWebglButtons } from './cta-webgl';
-import { initHeadlineReveals, initHeroIntro } from './hero-intro';
+import { initHeadlineReveals, initHeroIntro, prepareHeadlineChars, splitHeadline } from './hero-intro';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -857,6 +857,55 @@ const initAssociatePortraitCloud = () => {
   });
 };
 
+const initAgencyAnthem = () => {
+  const section = document.querySelector<HTMLElement>('.agency-anthem-section');
+  if (!section) {
+    return;
+  }
+
+  const lines = gsap.utils.toArray<HTMLElement>('.agency-anthem-line', section);
+  if (!lines.length) {
+    return;
+  }
+
+  lines.forEach((line) => {
+    const text = line.querySelector<HTMLElement>('.agency-anthem-line__base')?.textContent ?? line.textContent ?? '';
+    line.textContent = text.trim();
+  });
+
+  if (reduceMotion.matches) {
+    gsap.set(lines, { autoAlpha: 1, clearProps: 'transform,filter' });
+    return;
+  }
+
+  lines.forEach((line, index) => {
+    const chars = splitHeadline(line);
+    if (!chars.length) return;
+
+    gsap.set(line, { autoAlpha: 1 });
+    prepareHeadlineChars(chars);
+
+    gsap.to(chars, {
+      autoAlpha: 1,
+      yPercent: 0,
+      rotationX: 0,
+      filter: 'blur(0px)',
+      ease: 'none',
+      stagger: {
+        amount: Math.min(1.08, Math.max(0.42, chars.length * 0.016)),
+        from: 'start',
+      },
+      scrollTrigger: {
+        trigger: line,
+        start: 'top 145%',
+        end: 'bottom 62%',
+        scrub: 0.45,
+        refreshPriority: -30 + index,
+      },
+    });
+  });
+};
+
 const initMotion = () => {
   const pageKey = `${window.location.pathname}${window.location.search}`;
   if (currentPageKey === pageKey && motionContext) {
@@ -972,6 +1021,7 @@ const initMotion = () => {
 
     initTestimonials();
     initAssociatePortraitCloud();
+    initAgencyAnthem();
     cleanupListeners.push(initMarketAttentionInteraction());
     cleanupListeners.push(initNavHoverGlow());
     cleanupListeners.push(initStickyNavVisibility());

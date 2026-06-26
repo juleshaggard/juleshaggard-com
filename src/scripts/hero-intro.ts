@@ -52,7 +52,7 @@ const appendNode = (node: Node, target: HTMLElement, chars: HTMLElement[]) => {
   Array.from(node.childNodes).forEach((child) => appendNode(child, clone, chars));
 };
 
-const prepareHeadlineChars = (chars: HTMLElement[]) => {
+export const prepareHeadlineChars = (chars: HTMLElement[]) => {
   gsap.set(chars, {
     autoAlpha: 0,
     yPercent: 68,
@@ -106,6 +106,7 @@ const shouldRevealHeadline = (headline: HTMLElement, excludedElements: Set<HTMLE
   if (excludedElements.has(headline)) return false;
   if (!headline.textContent?.trim()) return false;
   if (headline.closest('.nav, .skip-link')) return false;
+  if (headline.closest('.agency-anthem-section')) return false;
   if (headline.closest('.projectblocklink, .smallproject')) return false;
   if (headline.matches('.ctalink, .mainline.inver.rightsidecontact.contact')) return false;
 

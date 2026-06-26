@@ -34,7 +34,7 @@ const canonicalUrl = absoluteSiteUrl(canonicalPath, Astro.site ?? new URL(produc
 const pageTitle = title.includes('Haggard') || title.length > 48 ? title : `${title} | ${siteName}`;
 const absoluteOgImage = absoluteSiteUrl(ogImage, Astro.site ?? new URL(productionOrigin));
 const robots = noindexPaths.has(currentPath) ? 'noindex, nofollow' : 'index, follow';
-const showCopyrightFooter = currentPath !== '/';
+const showCopyrightFooter = true;
 const normalizedDescription = description.replace(/\s+/g, ' ').trim();
 const metaDescription =
   normalizedDescription.length <= 160
