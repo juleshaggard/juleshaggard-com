@@ -968,6 +968,12 @@ const initMotion = () => {
       });
     }
 
+    const immediateProjectCards = gsap.utils.toArray<HTMLElement>(
+      '.agency-pattern-selected-grid .projectblocklink:nth-of-type(-n + 2)',
+    );
+    const isImmediateProjectElement = (element: HTMLElement) =>
+      immediateProjectCards.some((card) => card === element || card.contains(element));
+
     const revealElements = gsap.utils
       .toArray<HTMLElement>(
         [
@@ -986,7 +992,10 @@ const initMotion = () => {
       )
       .filter(
         (element) =>
-          !firstReadElements.includes(element) && !animatedTextElements.has(element) && !isTestimonialCard(element),
+          !firstReadElements.includes(element) &&
+          !animatedTextElements.has(element) &&
+          !isTestimonialCard(element) &&
+          !isImmediateProjectElement(element),
       );
 
     if (revealElements.length) {
