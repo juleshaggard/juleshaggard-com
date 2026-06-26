@@ -3540,6 +3540,7 @@ section.footer .splitpara.jhppara.footerrr {
   width: 100%;
   max-width: none;
   padding: clamp(5.25rem, 9vw, 9rem) 0 clamp(4.75rem, 8vw, 8rem);
+  scroll-margin-top: clamp(4.75rem, 9vw, 7rem);
   overflow: clip;
 }
 
