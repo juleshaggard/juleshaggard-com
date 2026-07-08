@@ -906,6 +906,59 @@ const initAgencyAnthem = () => {
   });
 };
 
+const initCylinderScene = () => {
+  const root = document.querySelector<HTMLElement>('.cylinder-home');
+  if (!root) {
+    return;
+  }
+
+  let cleanup: (() => void) | undefined;
+  let cancelled = false;
+  const hero = root.querySelector<HTMLElement>('.agency-cylinder-hero');
+
+  import('./cylinder-scene')
+    .then(({ initCylinderScene: initSharedCylinderScene }) => {
+      if (cancelled) {
+        return;
+      }
+
+      cleanup = initSharedCylinderScene(root);
+    })
+    .catch(() => {
+      hero?.classList.add('is-cylinder-fallback');
+    });
+
+  cleanupListeners.push(() => {
+    cancelled = true;
+    cleanup?.();
+  });
+};
+
+const initCylinderControlsScene = () => {
+  const root = document.querySelector<HTMLElement>('.cylinder-home');
+  if (!root) {
+    return;
+  }
+
+  let cleanup: (() => void) | undefined;
+  let cancelled = false;
+
+  import('./cylinder-controls')
+    .then(({ initCylinderControls }) => {
+      if (cancelled) {
+        return;
+      }
+
+      cleanup = initCylinderControls();
+    })
+    .catch(() => {});
+
+  cleanupListeners.push(() => {
+    cancelled = true;
+    cleanup?.();
+  });
+};
+
 const initMotion = () => {
   const pageKey = `${window.location.pathname}${window.location.search}`;
   if (currentPageKey === pageKey && motionContext) {
@@ -1031,6 +1084,8 @@ const initMotion = () => {
     initTestimonials();
     initAssociatePortraitCloud();
     initAgencyAnthem();
+    initCylinderControlsScene();
+    initCylinderScene();
     cleanupListeners.push(initMarketAttentionInteraction());
     cleanupListeners.push(initNavHoverGlow());
     cleanupListeners.push(initStickyNavVisibility());

@@ -1,0 +1,10 @@
+{
+  "path": "/cylinder-home",
+  "sourceUrl": "https://www.juleshaggard.com/cylinder-home",
+  "title": "Cylinder Homepage Experiment - Jules Haggard",
+  "description": "A homepage experiment for Jules Haggard with a rotating cylindrical headline.",
+  "bodyClass": "maincontent",
+  "ogImage": "/assets/social-image.png",
+  "htmlFile": "pages/cylinder-home.html",
+  "lastMigrated": "2026-06-26T12:00:00.000Z"
+}
