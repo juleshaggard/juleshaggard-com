@@ -34,6 +34,14 @@ html {
 
 body {
   min-height: 100%;
+  font-family: "Instrument Sans", sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 body.maincontent {
@@ -320,6 +328,7 @@ a {
   min-height: 2.75rem;
   padding: 0.65rem 0.95rem !important;
   border-radius: 999px;
+  font-family: "Instrument Sans", sans-serif;
   font-size: 0.94rem !important;
   line-height: 1 !important;
   text-decoration: none;
@@ -3477,8 +3486,45 @@ section.footer .splitpara.jhppara.footerrr {
   cursor: grab;
   isolation: isolate;
   position: relative;
+  font-family: "Instrument Sans", sans-serif;
   touch-action: pan-y;
   overflow: visible !important;
+}
+
+.cylinder-home,
+.cylinder-home p,
+.cylinder-home li,
+.cylinder-home a,
+.cylinder-home button,
+.cylinder-home label,
+.cylinder-home .splitpara,
+.cylinder-home .ctalink,
+.cylinder-home .homepageprojects.center,
+.cylinder-home .agency-pattern-text-link,
+.cylinder-home .agency-pattern-availability,
+.cylinder-home .agency-pattern-list,
+.cylinder-home .agency-pattern-list li,
+.cylinder-home .agency-pattern-reason-list,
+.cylinder-home .agency-pattern-reason-list li,
+.cylinder-home .agency-pattern-when .agency-pattern-reason-list strong,
+.cylinder-home .agency-pattern-closing-copy,
+.cylinder-home .agency-pattern-closing-copy p {
+  font-family: "Instrument Sans", sans-serif !important;
+}
+
+.cylinder-home h1,
+.cylinder-home h2,
+.cylinder-home h3,
+.cylinder-home .heading-3,
+.cylinder-home .heading-4,
+.cylinder-home .projecttitle,
+.cylinder-home .projecttitleworkpage,
+.cylinder-home .agency-cylinder-fallback-title,
+.cylinder-home .agency-pattern-section h2,
+.cylinder-home .agency-pattern-closing h2,
+.cylinder-home .agency-pattern-selected-header h2,
+.cylinder-home .agency-pattern-capabilities .agency-pattern-list strong {
+  font-family: "Instrument Serif", serif !important;
 }
 
 .cylinder-home.is-cylinder-dragging {
