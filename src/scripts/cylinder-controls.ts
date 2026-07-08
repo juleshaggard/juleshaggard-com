@@ -67,7 +67,7 @@ type ToggleConfig = {
 
 type ControlConfig = SliderConfig | ToggleConfig;
 
-const storageKey = 'jules:cylinder-controls:v7';
+const storageKey = 'jules:cylinder-controls:v8';
 const eventName = 'jules:cylinder-controls';
 const mobileLayoutQuery = '(max-width: 767px)';
 
@@ -132,7 +132,7 @@ const getDefaultState = (): CylinderControlState => {
       scale: 0.59,
       x: 0,
       y: isMobile ? 2.15 : 0.35,
-      pitch: -0.39,
+      pitch: -0.29,
       yaw: 0,
       speed: 1,
       backfaceVisible: true,

@@ -121,7 +121,7 @@ const defaultLogoControls = {
   heightCompression: 1.32,
   scale: 0.59,
   y: 0.35,
-  pitch: -0.39,
+  pitch: -0.29,
 };
 
 const mobileLogoControls = {
