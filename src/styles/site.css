@@ -3555,6 +3555,7 @@ section.footer .splitpara.jhppara.footerrr {
 }
 
 .cylinder-home .agency-cylinder-stage {
+  --cylinder-stage-breakpoint-bleed: 0px;
   --cylinder-stage-width-extra: 0px;
   --cylinder-stage-x: 0px;
   --cylinder-stage-opacity: 1;
@@ -3562,7 +3563,7 @@ section.footer .splitpara.jhppara.footerrr {
   position: absolute;
   z-index: 0;
   left: 50%;
-  width: calc(100vw + var(--cylinder-stage-width-extra));
+  width: calc(100vw + var(--cylinder-stage-breakpoint-bleed) + var(--cylinder-stage-width-extra));
   height: 100vh;
   min-height: max(18rem, 100dvh);
   opacity: var(--cylinder-stage-opacity);
@@ -4290,6 +4291,12 @@ section.footer .splitpara.jhppara.footerrr {
   text-align: center !important;
 }
 
+@media screen and (max-width: 1280px) {
+  .cylinder-home .agency-cylinder-stage {
+    --cylinder-stage-breakpoint-bleed: clamp(16rem, 34vw, 27rem);
+  }
+}
+
 @media screen and (max-width: 1080px) {
   .personal-home-compact .personal-hero {
     grid-template-columns: 1fr;
@@ -4380,7 +4387,8 @@ section.footer .splitpara.jhppara.footerrr {
   }
 
   .cylinder-home .agency-cylinder-stage {
-    width: calc(100vw + 2rem + var(--cylinder-stage-width-extra));
+    --cylinder-stage-breakpoint-bleed: clamp(12rem, 54vw, 18rem);
+    width: calc(100vw + 2rem + var(--cylinder-stage-breakpoint-bleed) + var(--cylinder-stage-width-extra));
   }
 
   .cylinder-home .agency-cylinder-hero.is-cylinder-ready .flex-block-3 {
