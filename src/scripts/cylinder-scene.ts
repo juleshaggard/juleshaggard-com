@@ -155,6 +155,18 @@ const defaultFogControls = {
 
 const isMobileLayout = () => window.matchMedia(mobileLayoutQuery).matches;
 
+const getStageTopBleed = () => {
+  if (window.innerWidth <= 767) {
+    return 92;
+  }
+
+  if (window.innerWidth <= 1280) {
+    return 150;
+  }
+
+  return 0;
+};
+
 const logos: LogoSpec[] = [
   { src: '/assets/logos/agency-home/nike.svg', width: 300, height: 118, y: 0.52 },
   { src: '/assets/logos/agency-home/apple.svg', width: 104, height: 104, y: 0.51 },
@@ -684,8 +696,9 @@ export const initCylinderScene = (root: HTMLElement) => {
       const titleRect = titleAnchor.getBoundingClientRect();
       const logoRect = logoAnchor.getBoundingClientRect();
       const stageTop = Math.max(0, titleRect.top - rootRect.top - Math.min(24, titleRect.height * 0.05));
+      const stageTopBleed = getStageTopBleed();
 
-      stage.style.top = `${Math.round(stageTop + controls.canvas.topOffsetPx)}px`;
+      stage.style.top = `${Math.round(stageTop + controls.canvas.topOffsetPx - stageTopBleed)}px`;
       stage.style.height = '100vh';
       stage.style.minHeight = '100dvh';
       stage.style.setProperty('--cylinder-stage-width-extra', `${Math.round(controls.canvas.widthOffsetPx)}px`);
@@ -695,14 +708,14 @@ export const initCylinderScene = (root: HTMLElement) => {
       const stageRect = stage.getBoundingClientRect();
       const width = Math.max(320, Math.round(stageRect.width));
       const height = Math.max(220, Math.round(stageRect.height));
-      const renderWidth = Math.min(width, sceneDesignWidth);
-      const viewportX = Math.round((width - renderWidth) / 2);
-      const frameRect = new DOMRect(stageRect.left + viewportX, stageRect.top, renderWidth, height);
+      const renderWidth = width;
+      const frameRect = new DOMRect(stageRect.left, stageRect.top, renderWidth, height);
       const ratio = renderWidth / height;
+      const layoutWidth = Math.min(window.innerWidth, sceneDesignWidth);
       const viewportScale = Math.min(1, sceneDesignHeight / height);
 
       renderer.setSize(width, height, false);
-      renderer.setViewport(viewportX, 0, renderWidth, height);
+      renderer.setViewport(0, 0, renderWidth, height);
       camera.fov = controls.camera.fov;
       camera.aspect = ratio;
       camera.position.set(controls.camera.x, controls.camera.y, controls.camera.z);
@@ -714,7 +727,7 @@ export const initCylinderScene = (root: HTMLElement) => {
       const titleRatio = titleRect.width / Math.max(1, titleRect.height);
       const titleScale = titleRatio > 4.4 ? 2.25 : titleRatio < 3.25 ? 2.2 : 1.82;
       const titleWideScale = titleRatio > 4.4 ? 0.74 : titleRatio < 3.25 ? 0.86 : 0.79;
-      const titleWideDrop = Math.min(1.35, Math.max(0, (renderWidth - 1680) / 420));
+      const titleWideDrop = Math.min(1.35, Math.max(0, (layoutWidth - 1680) / 420));
       setBackfaceVisibility(titleMaterial, controls.title.backfaceVisible);
       titleGroup.scale.set(
         titleScale * titleWideScale * controls.title.scale * viewportScale,
