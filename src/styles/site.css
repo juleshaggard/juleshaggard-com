@@ -3483,12 +3483,16 @@ section.footer .splitpara.jhppara.footerrr {
 }
 
 .cylinder-home {
-  cursor: grab;
   isolation: isolate;
   position: relative;
   font-family: "Instrument Sans", sans-serif;
   touch-action: pan-y;
   overflow: visible !important;
+}
+
+.cylinder-home .agency-cylinder-hero,
+.cylinder-home .agency-pattern-logo-band {
+  cursor: grab;
 }
 
 .cylinder-home,

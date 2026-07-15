@@ -435,6 +435,9 @@ const isInteractiveTarget = (target: EventTarget | null) => {
   );
 };
 
+const isPointInRect = (clientX: number, clientY: number, rect: DOMRect) =>
+  clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom;
+
 export const initCylinderScene = (root: HTMLElement) => {
   const stage = root.querySelector<HTMLElement>('.agency-cylinder-stage');
   const canvas = root.querySelector<HTMLCanvasElement>('.agency-cylinder-stage__canvas');
@@ -591,6 +594,10 @@ export const initCylinderScene = (root: HTMLElement) => {
       return clientY > midpoint ? 'logos' : 'title';
     };
 
+    const isInsideDragSurface = (clientX: number, clientY: number) =>
+      isPointInRect(clientX, clientY, hero.getBoundingClientRect()) ||
+      isPointInRect(clientX, clientY, band.getBoundingClientRect());
+
     const endDrag = () => {
       if (!dragState) return;
 
@@ -605,7 +612,11 @@ export const initCylinderScene = (root: HTMLElement) => {
     };
 
     const onPointerDown = (event: PointerEvent) => {
-      if (event.button !== 0 || isInteractiveTarget(event.target)) {
+      if (
+        event.button !== 0 ||
+        isInteractiveTarget(event.target) ||
+        !isInsideDragSurface(event.clientX, event.clientY)
+      ) {
         return;
       }
 
@@ -628,6 +639,11 @@ export const initCylinderScene = (root: HTMLElement) => {
 
     const onPointerMove = (event: PointerEvent) => {
       if (!dragState || event.pointerId !== dragState.pointerId) {
+        return;
+      }
+
+      if (!isInsideDragSurface(event.clientX, event.clientY)) {
+        endDrag();
         return;
       }
 
@@ -675,15 +691,35 @@ export const initCylinderScene = (root: HTMLElement) => {
       endDrag();
     };
 
+    const onLostPointerCapture = (event: PointerEvent) => {
+      if (!dragState || event.pointerId !== dragState.pointerId) {
+        return;
+      }
+
+      dragState = undefined;
+      root.classList.remove('is-cylinder-dragging');
+    };
+
+    const onPageScroll = () => {
+      if (dragState) {
+        spinVelocity[dragState.target] = 0;
+        endDrag();
+      }
+    };
+
     root.addEventListener('pointerdown', onPointerDown);
     root.addEventListener('pointermove', onPointerMove, { passive: false });
     root.addEventListener('pointerup', onPointerUp);
     root.addEventListener('pointercancel', onPointerCancel);
+    root.addEventListener('lostpointercapture', onLostPointerCapture);
+    window.addEventListener('scroll', onPageScroll, { passive: true });
     pointerCleanup = () => {
       root.removeEventListener('pointerdown', onPointerDown);
       root.removeEventListener('pointermove', onPointerMove);
       root.removeEventListener('pointerup', onPointerUp);
       root.removeEventListener('pointercancel', onPointerCancel);
+      root.removeEventListener('lostpointercapture', onLostPointerCapture);
+      window.removeEventListener('scroll', onPageScroll);
       root.classList.remove('is-cylinder-dragging');
     };
 
