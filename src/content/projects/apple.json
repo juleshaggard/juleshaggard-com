@@ -5,6 +5,7 @@
   "bodyClass": "",
   "ogImage": "/assets/social-image.png",
   "htmlFile": "projects/apple.html",
+  "hidden": true,
   "lastMigrated": "2026-05-28T05:19:48.331Z",
   "description": "Apple needed a simple visual story for a new generation of glass across the product suite. The work made durability feel precise, desirable, and unmistakably Apple, turning a technical material advancement into a premium product signal customers could understand at a glance."
 }

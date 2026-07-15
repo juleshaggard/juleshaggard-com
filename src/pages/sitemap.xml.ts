@@ -22,7 +22,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   const routes = collections
     .flat()
-    .filter((entry) => !noindexPaths.has(entry.data.path))
+    .filter((entry) => !entry.data.hidden && !noindexPaths.has(entry.data.path))
     .sort((a, b) => a.data.path.localeCompare(b.data.path));
 
   const urls = routes

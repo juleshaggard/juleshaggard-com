@@ -34,7 +34,7 @@ const homepageFeaturedProjects = [
   { href: '/projects/notebook-lm-google', title: 'NotebookLM' },
   { href: '/projects/ibm-watson', title: 'IBM Watson' },
   { href: '/projects/beats-by-dre', title: 'Beats by Dre' },
-  { href: '/projects/apple', title: 'Apple' },
+  { href: '/projects/bizzabo', title: 'Bizzabo' },
   { href: '/projects/chase-travel', title: 'Chase Travel' },
   { href: '/projects/fender', title: 'Fender' },
 ];
@@ -42,6 +42,7 @@ const homepageFeaturedProjects = [
 const homepageLeadProject = { href: '/projects/google-maps-pegman', title: 'Google Maps Pegman' };
 
 const knownProjectCardHrefs = new Map([['Prometheus Group', '/projects/prometheus-group']]);
+const hiddenProjectHrefs = new Set(['/projects/apple']);
 
 let allWorkDocument: CheerioAPI | null = null;
 
@@ -481,6 +482,12 @@ function fixKnownProjectCardHrefs($: CheerioAPI) {
   });
 }
 
+function removeHiddenProjectCards($: CheerioAPI) {
+  hiddenProjectHrefs.forEach((href) => {
+    $(`a.projectblocklink[href="${href}"], a.smallproject[href="${href}"]`).remove();
+  });
+}
+
 function allWorkProjectCardHtml(href: string, title: string) {
   const allWork = getAllWorkDocument();
   let card = allWork(`a.projectblocklink[href="${href}"]`).first();
@@ -643,6 +650,7 @@ export function enhanceContentHtml(html: string, options: EnhanceContentOptions)
   const $ = cheerio.load(html, {}, false);
 
   fixKnownProjectCardHrefs($);
+  removeHiddenProjectCards($);
   placeHomepageSmallProjects($, options);
   enhanceHeadings($);
   enhanceImages($, options);

@@ -11,6 +11,7 @@ const migratedPageSchema = z.object({
   ogImage: z.string().optional(),
   htmlFile: z.string(),
   lastMigrated: z.string(),
+  hidden: z.boolean().optional(),
 });
 
 export const collections = {

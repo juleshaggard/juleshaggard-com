@@ -127,7 +127,7 @@ function isAbsoluteHttpUrl(value) {
 }
 
 async function main() {
-  const pages = await migratedPages();
+  const pages = (await migratedPages()).filter((page) => !page.hidden);
   const errors = [];
   const builtHtml = [];
 

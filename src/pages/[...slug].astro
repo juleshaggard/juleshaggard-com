@@ -11,7 +11,9 @@ export async function getStaticPaths() {
   const pages = await getCollection('pages');
   const projects = await getCollection('projects');
   const writing = await getCollection('writing');
-  const entries = [...pages, ...projects, ...writing].filter((entry) => entry.data.path !== '/') as MigratedEntry[];
+  const entries = [...pages, ...projects, ...writing].filter(
+    (entry) => entry.data.path !== '/' && !entry.data.hidden,
+  ) as MigratedEntry[];
 
   return entries.map((entry) => ({
     params: { slug: entry.data.path.replace(/^\/|\/$/g, '') },
