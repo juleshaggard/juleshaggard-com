@@ -957,14 +957,36 @@ a {
   padding-bottom: clamp(1.5rem, 4vw, 4rem);
 }
 
-.personal-about-longform .personal-page-hero {
-  grid-template-columns: minmax(0, 1fr);
-  align-items: start !important;
+.personal-about.personal-about-longform .personal-page-hero.personal-about-hero {
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(16rem, 0.48fr);
+  justify-content: center !important;
+  align-items: center !important;
+  width: min(100%, 92rem) !important;
   padding-bottom: clamp(2.75rem, 5vw, 5.5rem) !important;
 }
 
 .personal-about-hero-copy {
   max-width: min(100%, 52rem);
+}
+
+.personal-about-portrait {
+  justify-self: center;
+  width: min(100%, clamp(15.5rem, 27vw, 25rem));
+  aspect-ratio: 527 / 660;
+  margin: 0;
+  overflow: hidden;
+  background: #f6f4f0;
+  border: clamp(0.24rem, 0.42vw, 0.38rem) solid #444342;
+  border-radius: 50%;
+}
+
+.personal-about-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
 
 .personal-about-lede {
@@ -1111,6 +1133,8 @@ a {
 }
 
 @media screen and (max-width: 1080px) {
+  .personal-about.personal-about-longform .personal-page-hero.personal-about-hero,
+  .personal-about-longform .personal-page-hero,
   .personal-hero,
   .personal-page-hero,
   .personal-two-col,
@@ -1149,6 +1173,11 @@ a {
   .personal-proof-columns {
     grid-template-columns: 1fr;
   }
+
+  .personal-about-portrait {
+    justify-self: start;
+    width: min(72vw, 21rem);
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -1170,6 +1199,11 @@ a {
   .personal-feature-grid .projectblocklink.xl {
     grid-template-columns: 1fr;
     grid-column: auto;
+  }
+
+  .personal-about-portrait {
+    width: min(76vw, 18.5rem);
+    border-width: 0.24rem;
   }
 
   .personal-section .projecttitle.headertitledesc.lefty.brand-leader.hp {
@@ -4293,6 +4327,12 @@ section.footer .splitpara.jhppara.footerrr {
 .agency-pattern-closing-copy p {
   max-width: 42rem !important;
   text-align: center !important;
+}
+
+@media screen and (max-width: 1600px) {
+  .cylinder-home .agency-cylinder-stage {
+    --cylinder-stage-breakpoint-bleed: clamp(10rem, 20vw, 22rem);
+  }
 }
 
 @media screen and (max-width: 1280px) {

@@ -164,6 +164,10 @@ const getStageTopBleed = () => {
     return 150;
   }
 
+  if (window.innerWidth <= 1600) {
+    return 110;
+  }
+
   return 0;
 };
 
@@ -445,7 +449,7 @@ export const initCylinderScene = (root: HTMLElement) => {
   const logoAnchor = root.querySelector<HTMLElement>('.agency-logo-cylinder');
   const hero = root.querySelector<HTMLElement>('.agency-cylinder-hero');
   const band = root.querySelector<HTMLElement>('.agency-pattern-logo-band');
-  const text = titleAnchor?.dataset.cylinderHeadline?.trim() || 'Senior Freelance Creative Director';
+  const text = titleAnchor?.dataset.cylinderHeadline?.trim() || 'Senior Freelance Design Director';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (!stage || !canvas || !titleAnchor || !logoAnchor || !hero || !band || reduceMotion.matches || !hasWebgl()) {
