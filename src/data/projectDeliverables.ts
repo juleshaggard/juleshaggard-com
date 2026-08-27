@@ -36,8 +36,8 @@ export const projectDeliverables: Record<string, ProjectDeliverableRecap> = {
   },
   'beats-by-dre': {
     summary:
-      'The work packaged a retail comparison experience into a polished visual system built for clarity, energy, and brand consistency.',
-    items: ['Product visuals', 'Retail experience design', 'Interface direction', 'Presentation assets'],
+      'The retail app turned high-fidelity 3D earbud models into an interactive comparison experience used across 275 Apple Retail locations.',
+    items: ['Design direction', 'Interactive compare experience', 'Real-time 3D product pipeline', 'Apple Retail rollout'],
   },
   beautiful: {
     summary:
